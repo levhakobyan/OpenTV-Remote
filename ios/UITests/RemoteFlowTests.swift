@@ -315,7 +315,7 @@ final class RemoteFlowTests: XCTestCase {
     capture(app, "iPhone appearance preview")
     app.buttons["Use color"].tap()
     app.terminate()
-    app.launchArguments = ["-luma-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+    app.launchArguments = ["-opentv-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
     app.launch()
     XCTAssertTrue(app.buttons["Remote menu"].waitForExistence(timeout: 15))
     app.buttons["Home"].firstMatch.tap()
@@ -383,7 +383,7 @@ final class RemoteFlowTests: XCTestCase {
     continueAfterFailure = false
     let app = XCUIApplication()
     app.launchArguments = [
-      "-luma-ui-testing", "-luma-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
+      "-opentv-ui-testing", "-opentv-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
       "en_US",
     ]
     app.launch()
@@ -403,7 +403,7 @@ final class RemoteFlowTests: XCTestCase {
     app.buttons["Отмена"].tap()
     XCTAssertFalse(app.buttons["Connect TV Companion"].exists)
     app.terminate()
-    app.launchArguments = ["-luma-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+    app.launchArguments = ["-opentv-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
     app.launch()
     XCTAssertTrue(app.buttons["Найти телевизор"].waitForExistence(timeout: 10))
     app.buttons["Язык"].tap()
@@ -424,7 +424,7 @@ final class RemoteFlowTests: XCTestCase {
     continueAfterFailure = false
     let app = XCUIApplication()
     app.launchArguments = [
-      "-luma-ui-testing", "-luma-reset-ui-state", "-AppleLanguages", "(ru)", "-AppleLocale",
+      "-opentv-ui-testing", "-opentv-reset-ui-state", "-AppleLanguages", "(ru)", "-AppleLocale",
       "ru_RU",
     ]
     app.launch()
@@ -509,7 +509,7 @@ final class RemoteFlowTests: XCTestCase {
     continueAfterFailure = false
     let app = XCUIApplication()
     app.launchArguments = [
-      "-luma-ui-testing", "-luma-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
+      "-opentv-ui-testing", "-opentv-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
       "en_US",
     ]
     app.launch()
@@ -575,7 +575,7 @@ final class RemoteFlowTests: XCTestCase {
     let russian = language == "ru"
     let app = XCUIApplication()
     app.launchArguments = [
-      "-luma-ui-testing", "-luma-reset-ui-state", "-AppleLanguages", "(\(language))",
+      "-opentv-ui-testing", "-opentv-reset-ui-state", "-AppleLanguages", "(\(language))",
       "-AppleLocale", russian ? "ru_RU" : "en_US",
     ]
     app.launch()
@@ -612,7 +612,7 @@ final class RemoteFlowTests: XCTestCase {
     try await action("/samsung/start")
     let app = XCUIApplication()
     app.launchArguments = [
-      "-luma-ui-testing", "-luma-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
+      "-opentv-ui-testing", "-opentv-reset-ui-state", "-AppleLanguages", "(en)", "-AppleLocale",
       "en_US",
     ]
     app.launch()
@@ -657,7 +657,7 @@ final class RemoteFlowTests: XCTestCase {
     let typed = try await counts()
     XCTAssertGreaterThan(typed["samsungText"]!, 0)
     app.terminate()
-    app.launchArguments = ["-luma-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+    app.launchArguments = ["-opentv-ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
     app.launch()
     XCTAssertTrue(app.buttons["Remote menu"].waitForExistence(timeout: 12))
     let reused = try await counts()

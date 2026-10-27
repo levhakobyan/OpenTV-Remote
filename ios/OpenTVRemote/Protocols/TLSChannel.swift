@@ -38,7 +38,7 @@ final class TLSChannel: @unchecked Sendable {
   let peer = CertificateBox()
   private var buffer = Data()
   private let frameLimit: Int
-  private let queue = DispatchQueue(label: "com.luma.remote.tls")
+  private let queue = DispatchQueue(label: "com.opentvremote.tls")
   init(
     host: String, port: UInt16, identity: SecIdentity? = nil, pin: String?,
     frameLimit: Int = 1_048_576

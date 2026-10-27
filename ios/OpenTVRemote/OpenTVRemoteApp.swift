@@ -5,9 +5,9 @@ import SwiftUI
   init() {
     var defaults = UserDefaults.standard
     #if DEBUG
-      if ProcessInfo.processInfo.arguments.contains("-luma-ui-testing") {
-        let suite = "com.luma.remote.ios.uitests"
-        if ProcessInfo.processInfo.arguments.contains("-luma-reset-ui-state") {
+      if ProcessInfo.processInfo.arguments.contains("-opentv-ui-testing") {
+        let suite = "com.opentvremote.ios.uitests"
+        if ProcessInfo.processInfo.arguments.contains("-opentv-reset-ui-state") {
           UserDefaults.standard.removePersistentDomain(forName: suite)
         }
         defaults = UserDefaults(suiteName: suite)!

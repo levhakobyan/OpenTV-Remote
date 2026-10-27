@@ -378,7 +378,7 @@ def serve(port, context, args, editor):
                     client.send_many([envelope(41)])
                     print('PAIR SUCCESS', flush=True)
                 else:
-                    client.send_many([blob(1, integer(1, 622) + blob(2, text(1, 'Test fixture') + text(2, 'Luma QA')))])
+                    client.send_many([blob(1, integer(1, 622) + blob(2, text(1, 'Test fixture') + text(2, 'OpenTV QA')))])
                     frame(connection)
                     print('CONFIG RESPONSE received', flush=True)
                     client.send_many([blob(2, integer(1, 622))])
@@ -424,7 +424,7 @@ def identity(directory):
         raise ValueError('Identity directory must contain both cert.pem and key.pem')
     if not key.exists():
         subprocess.run(['openssl', 'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-keyout', str(key),
-                        '-out', str(cert), '-days', '365', '-subj', '/CN=Luma QA fixture'], check=True,
+                        '-out', str(cert), '-days', '365', '-subj', '/CN=OpenTV QA fixture'], check=True,
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         key.chmod(0o600)
     return key, cert
@@ -443,7 +443,7 @@ def main():
     if args.ime_control_port is not None and not 1024 < args.ime_control_port < 65536:
         parser.error('IME control port must be between 1025 and 65535')
     from OpenSSL import SSL, crypto
-    with tempfile.TemporaryDirectory(prefix='luma-tv-test-') as temporary:
+    with tempfile.TemporaryDirectory(prefix='opentv-tv-test-') as temporary:
         key, cert = identity(args.identity_dir or temporary)
         context = SSL.Context(SSL.TLS_SERVER_METHOD)
         context.set_min_proto_version(SSL.TLS1_2_VERSION)

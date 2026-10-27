@@ -1,6 +1,6 @@
 # Android TV Remote v2 IME research
 
-Research date: 2026-10-27. This note distinguishes public protocol evidence from implementation policy and hardware qualification. It does not claim that Luma has reproduced Google TV's complete private IME implementation.
+Research date: 2026-10-27. This note distinguishes public protocol evidence from implementation policy and hardware qualification. It does not claim that OpenTV-Remote has reproduced Google TV's complete private IME implementation.
 
 ## Evidence and confidence
 
@@ -16,7 +16,7 @@ Field status contains a counter, value, start/end, an unnamed integer and label.
 
 ### Range replacement and confirmation
 
-A richer primary [Windows sender implementation](https://raw.githubusercontent.com/falghamdi125/Google-TV-Remote-for-Windows/main/gtvremote/messages.py) reports testing on a TCL Google TV. Its operation1 replaces the half-open range `[start,end)` with the supplied value; equal endpoints insert, and an empty value deletes. The author says edits must echo current TV counters and stale counters are silently rejected. This is an upstream author's hardware claim, not independent Luma verification or a public Google compatibility guarantee.
+A richer primary [Windows sender implementation](https://raw.githubusercontent.com/falghamdi125/Google-TV-Remote-for-Windows/main/gtvremote/messages.py) reports testing on a TCL Google TV. Its operation1 replaces the half-open range `[start,end)` with the supplied value; equal endpoints insert, and an empty value deletes. The author says edits must echo current TV counters and stale counters are silently rejected. This is an upstream author's hardware claim, not independent OpenTV-Remote verification or a public Google compatibility guarantee.
 
 The corresponding [session implementation](https://raw.githubusercontent.com/falghamdi125/Google-TV-Remote-for-Windows/main/gtvremote/remote.py) waits for a TV field-status echo before reporting success. It observes that field counters advance after accepted edits. It also warns that zero-valued batch counters occur both on focus loss and after accepted edits; zero by itself is not a reliable close signal. App changes without a text-field status invalidate its remembered field. This implementation does not establish selection-only operations, password metadata, or action metadata.
 
@@ -26,7 +26,7 @@ The common [androidtvremote2 sender](https://raw.githubusercontent.com/tronikos/
 
 ### Unicode and editor actions
 
-Android's [InputConnection contract](https://developer.android.com/reference/android/view/inputmethod/InputConnection) distinguishes Java-character/code-unit operations from code-point operations and warns against splitting surrogate pairs. Luma should use UTF-16 indices for native Android editor interoperability and test emoji/combining sequences explicitly; applying that convention to Remote v2 ranges remains a protocol interoperability assumption requiring a real-TV check. The referenced Python range example uses Python string lengths and supplies no non-BMP qualification.
+Android's [InputConnection contract](https://developer.android.com/reference/android/view/inputmethod/InputConnection) distinguishes Java-character/code-unit operations from code-point operations and warns against splitting surrogate pairs. OpenTV-Remote should use UTF-16 indices for native Android editor interoperability and test emoji/combining sequences explicitly; applying that convention to Remote v2 ranges remains a protocol interoperability assumption requiring a real-TV check. The referenced Python range example uses Python string lengths and supplies no non-BMP qualification.
 
 Official [EditorInfo documentation](https://developer.android.com/reference/android/view/inputmethod/EditorInfo) defines separate input type, password variations, IME options, action identifiers and initial selection. It does not map those properties to Remote v2's unnamed integers. Enter key injection is not equivalent to `performEditorAction(SEARCH)` or `performEditorAction(DONE)`. No reviewed Remote v2 source establishes a general editor-action request or a selection-only opcode.
 

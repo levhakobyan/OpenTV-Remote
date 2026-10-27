@@ -8,6 +8,8 @@ on:
       - 'tools/prepare_downloads.py'
       - 'tools/prepare_pages.py'
       - 'tools/test_downloads.py'
+      - 'tools/check_branding.py'
+      - 'tools/test_branding.py'
       - '.github/workflows/pages.yml'
   release:
     types: [published, edited, deleted]
@@ -32,8 +34,10 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Test page generation and release validation
-        run: python3 -m unittest discover -s tools -p test_downloads.py -v
+      - name: Verify product branding and preserved compatibility names
+        run: python3 tools/check_branding.py
+      - name: Test branding, page generation and fixture contracts
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
       - name: Prepare static page from published release
         env:
           GH_TOKEN: ${{ github.token }}

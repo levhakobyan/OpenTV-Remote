@@ -22,7 +22,7 @@ The same eight preset geometries, capabilities, app slots and hand variants are 
 
 The TV Companion app and its phone-side transports have been removed. Current pointer support depends on an implemented native TV provider or Android Bluetooth HID; there is no separately installed TV receiver or Internet relay.
 
-The display name is now **OpenTV-Remote**. Existing `com.luma.remote` / `com.luma.remote.ios` application IDs and credential namespaces are intentionally retained so installed-app updates preserve pairing and layouts. Project, scheme, module and source-file names use OpenTVRemote. Older verification records/screenshots may show the former Luma Remote branding.
+The display name is now **OpenTV-Remote**. Existing `com.luma.remote` / `com.luma.remote.ios` application IDs and credential namespaces are intentionally retained so installed-app updates preserve pairing and layouts. Project, scheme, module and source-file names use OpenTVRemote. The [naming audit](docs/NAME_AUDIT.md) explains the retained compatibility and historical evidence identifiers.
 
 ## Project structure
 
@@ -63,7 +63,7 @@ The sharing script is provided for **you to run**. It has not been used to open 
 ./scripts/share-apk.sh
 ```
 
-Requires Python 3 and `cloudflared` (`brew install cloudflared`). It requires the Android phone debug APK and copies only that APK, its checksum file and the download page into a fresh temporary directory, starts a server bound to loopback, verifies its identity, then asks Cloudflare for a temporary `https://…trycloudflare.com` URL. Open that URL on your Android phone and choose Download Android APK. Keep the terminal open; Ctrl-C closes the tunnel, stops the server and removes the temporary share files. The project directory, secrets and source files are never the web root. Override the port with `PORT=8790 ./scripts/share-apk.sh` if needed. Cloudflare Quick Tunnels are temporary and depend on network availability.
+Requires Python 3 and `cloudflared` (`brew install cloudflared`). It requires the Android phone debug APK and copies the APK, its checksum, the generated download page, MIT license and bundled gallery assets into a fresh temporary directory, starts a server bound to loopback, verifies its identity, then asks Cloudflare for a temporary `https://…trycloudflare.com` URL. Open that URL on your Android phone and choose Download Android APK. Keep the terminal open; Ctrl-C closes the tunnel, stops the server and removes the temporary share files. The project directory, secrets and source files are never the web root. Override the port with `PORT=8790 ./scripts/share-apk.sh` if needed. Cloudflare Quick Tunnels are temporary and depend on network availability.
 
 To prepare the standalone HTML and phone APK **without starting a server or tunnel**:
 
@@ -200,7 +200,7 @@ No account, telemetry SDK, microphone access, TV Accessibility service or ADB-ba
 
 Current UI audit: [interface audit](docs/UI_AUDIT.md). Shortcut asset credits: [third-party icons](docs/THIRD_PARTY_ASSETS.md).
 
-Current interface: [all controls](docs/screenshots/current/rockers-all-controls.png), [presets](docs/screenshots/current/presets-preview.png), [colors](docs/screenshots/current/appearance-options.png), [color picker](docs/screenshots/current/color-picker.png), [distinct volume/channel controls](docs/screenshots/current/rockers-distinct.png), [custom app](docs/screenshots/current/custom-app.png), [remote](docs/screenshots/current/remote.png), [visual picker](docs/screenshots/current/picker-widgets.png), [button picker](docs/screenshots/current/picker-buttons.png), [app picker](docs/screenshots/current/picker-apps.png), [resize](docs/screenshots/current/resize-channel.png), [allowed drop](docs/screenshots/current/drop-allowed.png), [blocked drop](docs/screenshots/current/drop-blocked.png). Connected captures use the local protocol fixture. Restart a running share-apk.sh process to serve the new APK; a running share keeps its initial copied APK.
+Current interface: [all controls](docs/screenshots/current/all-controls.png), [presets](docs/screenshots/current/presets-preview.png), [colors](docs/screenshots/current/appearance-options.png), [color picker](docs/screenshots/current/color-picker.png), [distinct volume/channel controls](docs/screenshots/current/rockers-distinct.png), [custom app](docs/screenshots/current/custom-app.png), [remote](docs/screenshots/current/remote.png), [visual picker](docs/screenshots/current/picker-widgets.png), [button picker](docs/screenshots/current/picker-buttons.png), [app picker](docs/screenshots/current/picker-apps.png), [resize](docs/screenshots/current/resize-channel.png), [allowed drop](docs/screenshots/current/drop-allowed.png), [blocked drop](docs/screenshots/current/drop-blocked.png). Connected captures use the local protocol fixture. Restart a running share-apk.sh process to serve the new APK; a running share keeps its initial copied APK.
 
 ## License and attribution
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Explicitly selected lab receiver for studying Google TV keyboard interoperability.
-Not a production TV integration. Publishes 'Luma Keyboard Test' on the selected LAN.
+Not a production TV integration. Publishes 'OpenTV Keyboard Test' on the selected LAN.
 Only protocol operation types and non-text counters are logged. Text, its ranges,
 lengths and hashes are never logged. Ctrl-C removes discovery and ephemeral certificates.
 """
@@ -107,12 +107,12 @@ def serve(port, context):
                     assert digest in frame(connection)
                     send(connection, envelope(41)); event('paired')
                 else:
-                    send(connection, blob(1, integer(1, 622) + blob(2, blob(1, b'Luma Keyboard Test') + blob(2, b'Protocol lab'))))
+                    send(connection, blob(1, integer(1, 622) + blob(2, blob(1, b'OpenTV Keyboard Test') + blob(2, b'Protocol lab'))))
                     event('configure', fields=list(fields(frame(connection))))
                     send(connection, blob(2, integer(1, 622))); frame(connection)
                     send(connection, blob(40, integer(1, 1)))
                     time.sleep(1)
-                    app = integer(1, 7) + blob(10, b'Keyboard test') + blob(12, b'com.luma.protocol.lab')
+                    app = integer(1, 7) + blob(10, b'Keyboard test') + blob(12, b'com.opentv.protocol.lab')
                     send(connection, blob(20, blob(1, app) + blob(2, status())))
                     send(connection, blob(21, integer(1, 7) + integer(2, 42)))
                     send(connection, blob(22, blob(2, status())))
@@ -141,21 +141,21 @@ def serve(port, context):
                 connections.remove(connection)
         threading.Thread(target=handle, daemon=True).start()
 
-with tempfile.TemporaryDirectory(prefix='luma-ime-lab-') as work:
+with tempfile.TemporaryDirectory(prefix='opentv-ime-lab-') as work:
     key = pathlib.Path(work) / 'key.pem'
     cert = pathlib.Path(work) / 'cert.pem'
-    subprocess.run(['openssl', 'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-keyout', str(key), '-out', str(cert), '-days', '1', '-subj', '/CN=Luma Keyboard Test'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(['openssl', 'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-keyout', str(key), '-out', str(cert), '-days', '1', '-subj', '/CN=OpenTV Keyboard Test'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     context = SSL.Context(SSL.TLS_SERVER_METHOD)
     context.set_min_proto_version(SSL.TLS1_2_VERSION)
     context.use_privatekey_file(str(key)); context.use_certificate_file(str(cert))
     context.set_verify(SSL.VERIFY_PEER, lambda *unused: True)
     context.set_app_data(crypto.load_certificate(crypto.FILETYPE_PEM, cert.read_bytes()))
     discovery = Zeroconf(interfaces=[args.host])
-    service = ServiceInfo('_androidtvremote2._tcp.local.', 'Luma Keyboard Test._androidtvremote2._tcp.local.', addresses=[socket.inet_aton(args.host)], port=6466, properties={'model': 'Luma Keyboard Test'}, server='luma-keyboard-test.local.')
+    service = ServiceInfo('_androidtvremote2._tcp.local.', 'OpenTV Keyboard Test._androidtvremote2._tcp.local.', addresses=[socket.inet_aton(args.host)], port=6466, properties={'model': 'OpenTV Keyboard Test'}, server='opentv-keyboard-test.local.')
     try:
         for port in [6466, 6467]: threading.Thread(target=serve, args=(port, context), daemon=True).start()
         discovery.register_service(service, strict=False)
-        event('ready', name='Luma Keyboard Test')
+        event('ready', name='OpenTV Keyboard Test')
         while True: time.sleep(1)
     except KeyboardInterrupt: pass
     finally:

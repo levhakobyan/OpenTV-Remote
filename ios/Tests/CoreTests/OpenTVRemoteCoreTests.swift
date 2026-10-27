@@ -211,7 +211,7 @@ final class OpenTVRemoteCoreTests: XCTestCase {
     }
   }
   func testAppLanguagePersistsAndSystemResolvesSupportedLanguage() throws {
-    let name = "com.luma.core.language-test." + UUID().uuidString
+    let name = "com.opentvremote.core.language-test." + UUID().uuidString
     let defaults = try XCTUnwrap(UserDefaults(suiteName: name))
     defer { defaults.removePersistentDomain(forName: name) }
     XCTAssertEqual(AppLanguage.load(from: defaults), .system)

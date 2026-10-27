@@ -10,16 +10,16 @@ from OpenSSL import crypto
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--http-port',type=int,default=8001)
 parser.add_argument('--https-port',type=int,default=8002)
-parser.add_argument('--approval-file',default='/private/tmp/luma-samsung-approval')
-parser.add_argument('--control-file',default='/private/tmp/luma-samsung-control')
+parser.add_argument('--approval-file',default='/private/tmp/opentv-samsung-approval')
+parser.add_argument('--control-file',default='/private/tmp/opentv-samsung-control')
 args=parser.parse_args()
-work=tempfile.TemporaryDirectory(prefix='luma-samsung-')
+work=tempfile.TemporaryDirectory(prefix='opentv-samsung-')
 ctx=ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 peers=set();lock=threading.RLock();auth_token=secrets.token_urlsafe(24);secure_disabled=False
 
 def certificate():
     key=crypto.PKey();key.generate_key(crypto.TYPE_RSA,2048)
-    cert=crypto.X509();cert.set_serial_number(secrets.randbits(64));cert.get_subject().CN='Luma Samsung fixture'
+    cert=crypto.X509();cert.set_serial_number(secrets.randbits(64));cert.get_subject().CN='OpenTV Samsung fixture'
     cert.gmtime_adj_notBefore(-60);cert.gmtime_adj_notAfter(86400);cert.set_issuer(cert.get_subject());cert.set_pubkey(key);cert.sign(key,'sha256')
     pem=pathlib.Path(work.name)/'cert.pem';priv=pathlib.Path(work.name)/'key.pem'
     pem.write_bytes(crypto.dump_certificate(crypto.FILETYPE_PEM,cert));priv.write_bytes(crypto.dump_privatekey(crypto.FILETYPE_PEM,key));priv.chmod(0o600)
@@ -27,7 +27,7 @@ def certificate():
 certificate()
 
 def metadata():
-    return {'type':'Samsung SmartTV','id':'uuid:luma-samsung-fixture','name':'Samsung fixture','device':{'id':'uuid:luma-samsung-fixture','name':'Samsung fixture','type':'Samsung SmartTV','modelName':'Fixture','OS':'Tizen','ImeSyncedSupport':'true','TokenAuthSupport':'true'},'isSupport':json.dumps({'remote_available':'true','remote_fourDirections':'true','ImeSyncedSupport':'true'})}
+    return {'type':'Samsung SmartTV','id':'uuid:opentv-samsung-fixture','name':'Samsung fixture','device':{'id':'uuid:opentv-samsung-fixture','name':'Samsung fixture','type':'Samsung SmartTV','modelName':'Fixture','OS':'Tizen','ImeSyncedSupport':'true','TokenAuthSupport':'true'},'isSupport':json.dumps({'remote_available':'true','remote_fourDirections':'true','ImeSyncedSupport':'true'})}
 
 class Peer:
     def __init__(self,conn):self.conn=conn;self.send_lock=threading.Lock()

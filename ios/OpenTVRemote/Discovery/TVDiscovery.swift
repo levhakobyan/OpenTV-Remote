@@ -123,7 +123,7 @@ final class TVDiscovery: NSObject, @preconcurrency NetServiceBrowserDelegate,
   }
   private static func portOpen(_ host: String, _ port: UInt16) async -> Bool {
     await withCheckedContinuation { c in
-      let queue = DispatchQueue(label: "luma.probe")
+      let queue = DispatchQueue(label: "opentv.probe")
       let connection = NWConnection(
         host: NWEndpoint.Host(host), port: NWEndpoint.Port(rawValue: port)!, using: .tcp)
       let gate = CompletionGate()

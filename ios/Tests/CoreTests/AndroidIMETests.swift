@@ -15,7 +15,7 @@ final class AndroidIMETests: XCTestCase {
     if show { return Wire.bytes(22, Wire.bytes(2, value)) }
     return Wire.bytes(
       20,
-      Wire.bytes(1, Wire.integer(1, context) + Wire.string(12, "com.luma.fixture"))
+      Wire.bytes(1, Wire.integer(1, context) + Wire.string(12, "com.opentvremote.fixture"))
         + Wire.bytes(2, value))
   }
   private func opened(_ text: String = "ab") throws -> AndroidIMEState {
@@ -149,7 +149,7 @@ final class AndroidIMETests: XCTestCase {
     XCTAssertFalse(ime.stage(value("late"), session: session))
     try ime.receive(Wire.parse(status("late", counter: 43)))
     XCTAssertEqual(ime.keyboard.mode, .manual)
-    try ime.receive(Wire.parse(Wire.bytes(20, Wire.bytes(1, Wire.string(12, "com.luma.other")))))
+    try ime.receive(Wire.parse(Wire.bytes(20, Wire.bytes(1, Wire.string(12, "com.opentvremote.other")))))
     XCTAssertEqual(ime.keyboard.mode, .closed)
     XCTAssertNil(ime.keyboard.value)
   }

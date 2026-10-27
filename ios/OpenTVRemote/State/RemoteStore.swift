@@ -372,7 +372,7 @@ struct TVProfile: Codable {
         }
       }
     }
-    monitor.start(queue: DispatchQueue(label: "luma.network"))
+    monitor.start(queue: DispatchQueue(label: "opentv.network"))
   }
   func refreshAddresses() {
     var changed = false

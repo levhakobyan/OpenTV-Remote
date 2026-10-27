@@ -47,7 +47,8 @@ The Android package ID and iOS bundle ID remain unchanged after the display-name
 ## Verification
 
 ```sh
-python3 -m unittest discover -s tools -p test_downloads.py -v
+python3 tools/check_branding.py
+python3 -m unittest discover -s tools -p 'test_*.py' -v
 bash -n scripts/share-apk.sh
 ```
 

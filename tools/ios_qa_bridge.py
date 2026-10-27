@@ -19,7 +19,7 @@ parser.add_argument('--ime-control-port',type=int,help='Explicit local fixture c
 args=parser.parse_args()
 if args.ime_control_port is not None and not 1024 < args.ime_control_port < 65536:
     parser.error('IME fixture control port must be between 1025 and 65535')
-work=tempfile.TemporaryDirectory(prefix='luma-ios-qa-')
+work=tempfile.TemporaryDirectory(prefix='opentv-ios-qa-')
 folder=Path(work.name);samsung=None;output=None
 def stop():
     global samsung,output
