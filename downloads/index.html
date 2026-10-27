@@ -19,6 +19,8 @@
     .note{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:12px 0 28px;max-width:700px}.note p{margin:0}.ios{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.ios h2{font-size:20px}.ios p{margin:0;max-width:700px;font-size:14px}footer{padding-top:24px;font-size:13px;color:var(--muted)}
     .platform-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.platform-links a{border:1px solid var(--line);border-radius:12px;padding:10px 16px;min-height:48px;text-decoration:none;font-weight:650}.platform-links a:hover{background:var(--panel)}
     .ios{scroll-margin-top:24px;margin-top:24px;padding:28px 0}.ios h2{font-size:26px}.ios>p{font-size:16px;margin-bottom:16px}.ios .steps p{font-size:15px}.ios details{margin-top:18px}.ios summary{font-size:16px;color:var(--text);font-weight:650}.ios .guide{padding-top:20px}.ios .note{margin-top:20px}.ios .note p{font-size:14px}.ios .faq details{margin-top:8px}.ios .faq p{padding:8px 0 12px;font-size:14px}.ios code{display:inline;padding:2px 5px;font-size:13px;background:var(--panel);border-radius:4px;color:var(--text)}
+    .gallery{margin:28px 0 40px}.gallery h2{font-size:30px;letter-spacing:-.6px}.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}.gallery figure{margin:0;min-width:0}.gallery .shot{display:block;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--panel);box-shadow:0 16px 40px #0003}.gallery img{display:block;width:100%;height:auto}.gallery figcaption{padding:14px 2px;color:var(--muted);font-size:14px}.gallery figcaption strong{display:block;color:var(--text);font-size:16px}.gallery-note{font-size:13px;margin-top:8px}
+    @media(max-width:640px){.gallery-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;gap:16px}.gallery figure{flex:0 0 82%;scroll-snap-align:start}.gallery h2{font-size:27px}}
     @media(max-width:640px){main{padding:24px 18px 36px}.intro{padding-top:36px}.download{padding:24px}.device{margin-bottom:12px}}
   </style>
 </head>
@@ -32,6 +34,16 @@
     <nav class="platform-links" aria-label="Install by platform"><a href="#android-title">Android download</a><a href="#iphone-guide">iPhone install guide</a></nav>
   </section>
   {{DOWNLOAD_PANEL}}
+  <section class="gallery" aria-labelledby="gallery-title">
+    <h2 id="gallery-title">One remote. Your layout.</h2>
+    <p>Big controls, familiar buttons, and a look you can make your own. Swipe through the remotes on your phone, or open any image at full size.</p>
+    <div class="gallery-grid">
+      <figure><a class="shot" href="assets/android-remote.png" aria-label="Open full-size Android remote screenshot"><img src="assets/android-remote.png" alt="Android remote with lime accents, number keys, D-pad and playback controls" width="1080" height="2220" loading="lazy" decoding="async"></a><figcaption><strong>A complete remote</strong>Android · Numbers, navigation and playback.</figcaption></figure>
+      <figure><a class="shot" href="assets/sky-remote.png" aria-label="Open full-size Sky remote screenshot"><img src="assets/sky-remote.png" alt="Android full remote with a blue accent and channel and volume controls on opposite sides" width="1080" height="2220" loading="lazy" decoding="async"></a><figcaption><strong>Make it yours</strong>Change colors and arrange your controls.</figcaption></figure>
+      <figure><a class="shot" href="assets/iphone-remote.png" aria-label="Open full-size iPhone remote screenshot"><img src="assets/iphone-remote.png" alt="iPhone remote with app shortcuts, D-pad, distinct volume and channel rockers, and playback" width="1206" height="2622" loading="lazy" decoding="async"></a><figcaption><strong>At home on iPhone</strong>Native controls with the same familiar layout.</figcaption></figure>
+    </div>
+    <p class="gallery-note">Actual development-app captures using local test devices. Example layouts and available controls vary by TV and connection.</p>
+  </section>
   <section class="setup" aria-labelledby="setup-title">
     <h2 id="setup-title">Connect in a few steps</h2>
     <ol class="steps">

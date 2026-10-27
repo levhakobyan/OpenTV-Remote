@@ -73,6 +73,15 @@ class DownloadTests(unittest.TestCase):
         self.assertNotIn("github.com/None", page)
         self.assertNotIn("{{IOS_SOURCE_LINK}}", page)
 
+    def test_gallery_images_and_fullsize_links_are_published_locally(self):
+        render_page(self.output, self.apk)
+        page = (self.output / "index.html").read_text()
+        for name in ["android-remote.png", "sky-remote.png", "iphone-remote.png"]:
+            image = self.output / "assets" / name
+            self.assertTrue(image.read_bytes().startswith(b"\x89PNG"))
+            self.assertIn(f'src="assets/{name}"', page)
+            self.assertIn(f'href="assets/{name}"', page)
+
     def test_release_label_is_html_escaped(self):
         render_page(self.output, self.apk, '<script>alert("bad")</script>')
         page = (self.output / "index.html").read_text()

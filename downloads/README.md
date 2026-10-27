@@ -1,6 +1,6 @@
 # OpenTV-Remote downloads
 
-`index.html` is the English template shared by local APK sharing and GitHub Pages. The page has no external scripts, fonts, analytics or account requirement. It describes the free/open-source MIT licensing and publishes the license beside the downloads. It includes a mobile-friendly iPhone source-install guide covering Xcode signing, Developer Mode, developer trust, free-profile renewal and local-network setup; the published version links directly to the repository source ZIP. Generated files live under ignored `build/` directories; do not publish the template with unresolved placeholders.
+`index.html` is the English template shared by local APK sharing and GitHub Pages. The page has no external scripts, fonts, analytics or account requirement. Its three-image remote gallery uses bundled PNG screenshots, full-size links and a touch-scroll layout on narrow screens. It describes the free/open-source MIT licensing and publishes the license beside the downloads. It includes a mobile-friendly iPhone source-install guide covering Xcode signing, Developer Mode, developer trust, free-profile renewal and local-network setup; the published version links directly to the repository source ZIP. Generated files live under ignored `build/` directories; do not publish the template with unresolved placeholders.
 
 ## Local APK sharing
 

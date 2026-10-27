@@ -52,6 +52,7 @@ def render_page(output, apk=None, label="Development build", repository=None):
     (output / "index.html").write_text(page, encoding="utf-8")
     (output / ".nojekyll").touch()
     shutil.copyfile(ROOT / "LICENSE", output / "LICENSE.txt")
+    shutil.copytree(ROOT / "downloads/assets", output / "assets", dirs_exist_ok=True)
 
 
 def main():

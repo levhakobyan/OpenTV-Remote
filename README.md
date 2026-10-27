@@ -4,6 +4,14 @@
 
 A phone remote with automatic network discovery, saved TVs and capability-aware controls. Android uses Kotlin / Jetpack Compose (Android 9+, debug target API 34). The iPhone app uses native SwiftUI (iOS 17+) with the same remote, editable grid, eight visual templates, independent hand preference, accent colors and shortcuts. See [iPhone setup](ios/README.md) and [iOS compatibility research](docs/IOS_RESEARCH.md) for platform differences and verification.
 
+## Screenshots
+
+| Android remote | Your own colors | iPhone remote |
+| --- | --- | --- |
+| [![Android remote](downloads/assets/android-remote.png)](downloads/assets/android-remote.png) | [![Sky remote](downloads/assets/sky-remote.png)](downloads/assets/sky-remote.png) | [![iPhone remote](downloads/assets/iphone-remote.png)](downloads/assets/iphone-remote.png) |
+
+Actual development-app captures with example layouts and local protocol fixtures. Tap an image for full size. TV capabilities determine the available controls.
+
 ## Current scope
 
 Both apps support English and Russian using native localization. Open the remote menu → Language, the globe button on Devices, or Language in About to choose System, English or Русский. The selection updates immediately and survives restart; saved TV/app/preset names and typed text are never translated. Casting UI, SDKs and file-sharing servers are removed.
@@ -160,7 +168,7 @@ This provider is implemented independently from protocol facts in [Samsung TV WS
 
 ## Keyboard
 
-The keyboard tile opens and focuses the native phone keyboard. On Android TV, an explicit IME-show request can open it automatically; disable Auto keyboard in About if desired. Native keyboard Send inserts the typed text on the TV; it does not submit a TV search. TVs/apps that do not emit focus events retain the manual tile. Per-keystroke live text sync is not enabled because replacement/deletion semantics need physical-TV verification. TV text is not copied into persistent storage.
+The keyboard tile opens the native phone keyboard. Android TV field-show messages can open it automatically when Auto keyboard is enabled. Usable readback and confirmations enable live range edits and TV text/selection updates; unsupported, private or ambiguous fields use explicit Manual Send. Enter is a separate TV key. Neither editor content nor passwords are saved. See [keyboard behavior and limits](docs/KEYBOARD_SYNC.md); real YouTube Search/TV Bro qualification of live sync remains pending.
 
 ## Bluetooth
 
