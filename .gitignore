@@ -1,0 +1,31 @@
+**/.gradle/
+**/.kotlin/
+**/local.properties
+**/build/
+**/.build/
+**/.swiftpm/
+*.iml
+.idea/
+.DS_Store
+**/DerivedData/
+**/xcuserdata/
+*.xcuserstate
+**/__pycache__/
+
+# Local credentials and signing material
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.mobileprovision
+*.pem
+
+# Generated packages and local diagnostics
+*.apk
+*.aab
+*.ipa
+*.xcresult/
+*.log

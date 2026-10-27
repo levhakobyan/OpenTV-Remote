@@ -1,0 +1,57 @@
+name: Publish download page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'downloads/**'
+      - 'tools/prepare_downloads.py'
+      - 'tools/prepare_pages.py'
+      - 'tools/test_downloads.py'
+      - '.github/workflows/pages.yml'
+  release:
+    types: [published, edited, deleted]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event_name == 'release' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Test page generation and release validation
+        run: python3 -m unittest discover -s tools -p test_downloads.py -v
+      - name: Prepare static page from published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_REPOSITORY: ${{ github.repository }}
+        run: python3 tools/prepare_pages.py --repository "$PAGES_REPOSITORY" --output build/pages
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
+        id: deployment

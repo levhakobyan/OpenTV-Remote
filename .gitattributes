@@ -1,0 +1,2 @@
+# Preserve Windows launcher line endings.
+*.bat text eol=crlf whitespace=cr-at-eol

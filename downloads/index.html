@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Download OpenTV-Remote for Android or follow the iPhone installation guide. Automatic TV discovery, customizable controls, and English and Russian interfaces.">
+  <title>OpenTV-Remote — Downloads &amp; iPhone setup</title>
+  <style>
+    :root{--bg:#101514;--panel:#1b2420;--text:#f3f7f0;--muted:#bcc8bf;--line:#3c4b41;--accent:#d5f69a}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:860px;margin:auto;padding:32px 24px 48px}header{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:750}svg{flex-shrink:0}.logo{width:35px;height:46px;color:var(--accent)}
+    .intro{padding:48px 0 30px;max-width:650px}h1{font-size:clamp(36px,7vw,56px);line-height:1.15;letter-spacing:-1.5px;margin:0 0 20px}p{margin:0 0 16px;color:var(--muted)}
+    .build{display:inline-block;border:1px solid var(--line);border-radius:8px;padding:3px 10px;font-size:13px;color:var(--muted)}
+    .download{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:28px;max-width:560px}.device{width:46px;height:46px;color:var(--accent);margin-bottom:16px}h2{font-size:24px;line-height:1.4;margin:0 0 8px}.meta{font-size:14px;color:var(--muted);margin-bottom:18px}
+    a{color:var(--accent);text-underline-offset:4px}.button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 16px;background:var(--accent);color:#172015;font-weight:750;border-radius:14px;text-decoration:none;text-align:center}.button:hover{background:#e4ffb6}.button svg{width:20px;height:20px}
+    a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:5px}details{border-top:1px solid var(--line);margin-top:20px;padding-top:12px}summary{cursor:pointer;min-height:44px;padding:8px 0;color:var(--muted);font-size:14px}code{display:block;font-size:12px;overflow-wrap:anywhere;color:var(--muted);padding-bottom:8px}
+    .setup{margin-top:40px;border-top:1px solid var(--line);padding-top:28px}.setup h2{margin-bottom:20px}.steps{padding-left:24px;margin:0;max-width:700px}.steps li{padding:0 0 18px 10px}.steps strong{display:block;margin-bottom:4px}.steps p{margin:0}
+    .note{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:12px 0 28px;max-width:700px}.note p{margin:0}.ios{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.ios h2{font-size:20px}.ios p{margin:0;max-width:700px;font-size:14px}footer{padding-top:24px;font-size:13px;color:var(--muted)}
+    .platform-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.platform-links a{border:1px solid var(--line);border-radius:12px;padding:10px 16px;min-height:48px;text-decoration:none;font-weight:650}.platform-links a:hover{background:var(--panel)}
+    .ios{scroll-margin-top:24px;margin-top:24px;padding:28px 0}.ios h2{font-size:26px}.ios>p{font-size:16px;margin-bottom:16px}.ios .steps p{font-size:15px}.ios details{margin-top:18px}.ios summary{font-size:16px;color:var(--text);font-weight:650}.ios .guide{padding-top:20px}.ios .note{margin-top:20px}.ios .note p{font-size:14px}.ios .faq details{margin-top:8px}.ios .faq p{padding:8px 0 12px;font-size:14px}.ios code{display:inline;padding:2px 5px;font-size:13px;background:var(--panel);border-radius:4px;color:var(--text)}
+    @media(max-width:640px){main{padding:24px 18px 36px}.intro{padding-top:36px}.download{padding:24px}.device{margin-bottom:12px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><svg class="logo" viewBox="0 0 36 48" fill="none" aria-hidden="true"><rect x="6" y="1" width="24" height="46" rx="12" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="10" r="2" fill="currentColor"/><circle cx="18" cy="25" r="8" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="25" r="3" fill="currentColor"/><path d="M14 39h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>OpenTV-Remote</header>
+  <section class="intro" aria-labelledby="title">
+    <h1 id="title">Your phone.<br>Your remote.</h1>
+    <p>A free, open-source remote for your TV. Find your TV, connect, and make the controls your own. No subscription, ads or account required.</p>
+    <span class="build">{{BUILD_LABEL}}</span>
+    <nav class="platform-links" aria-label="Install by platform"><a href="#android-title">Android download</a><a href="#iphone-guide">iPhone install guide</a></nav>
+  </section>
+  {{DOWNLOAD_PANEL}}
+  <section class="setup" aria-labelledby="setup-title">
+    <h2 id="setup-title">Connect in a few steps</h2>
+    <ol class="steps">
+      <li><strong>Install on your Android phone</strong><p>Download the APK and open it. If Android asks, allow your browser to install this app.</p></li>
+      <li><strong>Find your TV</strong><p>Keep your phone and TV on the same local network, open OpenTV-Remote, and choose the discovered TV. If discovery cannot find it, use Connect by IP with the TV’s local address.</p></li>
+      <li><strong>Approve the connection</strong><p>Follow the pairing or approval instructions for your TV. Available controls adapt to the connection’s capabilities.</p></li>
+    </ol>
+    <p>Change the interface language in OpenTV-Remote through the remote menu → Language, or the globe button on the Devices screen. Choose System, English or Русский.</p>
+    <aside class="note"><p>This is a development build. Android TV, Samsung, LG and Android Bluetooth HID have different requirements; physical TV compatibility is still being tested. Casting and a separate TV receiver app are not included.</p></aside>
+  </section>
+  <section class="ios" id="iphone-guide" aria-labelledby="ios-title">
+    <h2 id="ios-title">Install on your iPhone</h2>
+    <p>The iPhone app is available as source. You need a <strong>Mac with Xcode</strong>, an <strong>iPhone running iOS 17 or later</strong>, and your Apple Account. There is no App Store, TestFlight or signed IPA download yet. The Android APK cannot install on an iPhone.</p>
+    {{IOS_SOURCE_LINK}}
+    <details>
+      <summary>Open the step-by-step iPhone guide</summary>
+      <div class="guide">
+        <ol class="steps">
+          <li><strong>Get the project on your Mac</strong><p>Download and unzip the source, or clone the GitHub repository. Install Xcode from the Mac App Store, open it once, and finish its component installation.</p></li>
+          <li><strong>Connect and trust your iPhone</strong><p>Connect it to your Mac with a USB cable, unlock it, and tap <b>Trust</b> if “Trust This Computer?” appears. Keep the phone unlocked during the initial setup.</p></li>
+          <li><strong>Open the iOS project</strong><p>Open <code>ios/LumaRemote.xcodeproj</code> in Xcode. Choose the <b>LumaRemote</b> scheme and your connected iPhone as the run destination. The internal project name stays LumaRemote; the installed app is named OpenTV-Remote.</p></li>
+          <li><strong>Select your own signing team</strong><p>In Xcode Settings → Accounts, sign in with your Apple Account. Select the <b>LumaRemote target → Signing &amp; Capabilities</b>, enable <b>Automatically manage signing</b>, and select your own team. A free account appears as a Personal Team. Your Apple password and signing keys do not belong in this repository or on this website.</p></li>
+          <li><strong>Enable Developer Mode</strong><p>After Xcode pairs the phone, open iPhone <b>Settings → Privacy &amp; Security → Developer Mode</b>. Turn it on, restart when prompted, then unlock and confirm. If the option is missing, open Xcode’s Device Hub (or Devices and Simulators on older Xcode versions), select the connected phone, and complete pairing first.</p></li>
+          <li><strong>Build and run</strong><p>Select your iPhone in Xcode and press <b>Run ▶</b>. Let Xcode finish installing. If the phone asks you to trust your developer identity, follow the prompt; see troubleshooting below. You can then open OpenTV-Remote from its Home Screen icon.</p></li>
+          <li><strong>Connect to your TV</strong><p>Put the iPhone and TV on the same local network. Allow <b>Local Network</b> access, select a discovered TV, and follow its pairing/approval prompt. If discovery misses your TV, try <b>Connect by IP</b>. Choose English or Russian from the remote menu → Language.</p></li>
+        </ol>
+        <aside class="note"><p>With a free Personal Team, Apple’s development provisioning expires after <strong>7 days</strong>. Connect to Xcode and Run again to renew it. Keep the same bundle identifier and signing team to update your existing installation; avoid deleting the app so its saved TVs and layouts stay in place. <a href="https://developer.apple.com/help/account/basics/about-your-developer-account/">Apple’s Personal Team limits</a>.</p></aside>
+        <div class="faq">
+          <h3>Installation troubleshooting</h3>
+          <details><summary>“Untrusted Developer” or “Developer App”</summary><p>Open iPhone <b>Settings → General → VPN &amp; Device Management</b>. If your own Apple Account appears under <b>Developer App</b>, select it and follow the trust/verify prompt. Then reopen the app. If that entry is absent, return to Xcode and read its device/signing message. Use your own development identity; no third-party enterprise profile is required. <a href="https://developer.apple.com/documentation/appclip/fruta-building-a-feature-rich-app-with-swiftui">Apple’s Personal Team setup example</a>.</p></details>
+          <details><summary>Developer Mode is missing</summary><p>The switch appears after development pairing is initiated. Unlock the phone, trust the Mac, and select it in Xcode’s Device Hub. Then check Privacy &amp; Security again. <a href="https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device">Apple’s Developer Mode guide</a>.</p></details>
+          <details><summary>Xcode says the bundle identifier is unavailable</summary><p>For a new personal copy, choose a unique Bundle Identifier in Signing &amp; Capabilities, such as one under your own name. Changing an existing installation’s identifier creates a separate app; its old pairing/layout data will not move automatically. Keep an existing identifier/team when renewing a working installation.</p></details>
+          <details><summary>The app stopped opening after a week</summary><p>A free development profile may have expired. Reconnect the phone, open the same Xcode project with the same team/identifier, and Run again. Do not delete the app as the first step.</p></details>
+          <details><summary>No TV appears, or the network permission was denied</summary><p>Make sure both devices are on the same local network. Enable Local Network access for OpenTV-Remote in iPhone Settings and retry. Android TV discovery and manual IP are available; automatic Samsung/LG SSDP discovery on physical iPhones needs Apple’s restricted multicast entitlement, so use Connect by IP when necessary. No TV Companion app or casting setup is required.</p></details>
+        </div>
+      </div>
+    </details>
+  </section>
+  <footer>{{SOURCE_LINK}}Free and open source · <a href="LICENSE.txt">MIT License</a>.<br>No external scripts, advertising or tracking tools are loaded by this page.</footer>
+</main>
+</body>
+</html>
