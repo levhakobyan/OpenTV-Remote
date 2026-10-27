@@ -2,6 +2,8 @@
 
 **Free and open source, under the [MIT License](LICENSE).** Anyone can use, modify and share it. No subscription, ads or account required.
 
+[Download & installation guide](https://levhakobyan.github.io/OpenTV-Remote/) · [Development releases](https://github.com/levhakobyan/OpenTV-Remote/releases)
+
 A phone remote with automatic network discovery, saved TVs and capability-aware controls. Android uses Kotlin / Jetpack Compose (Android 9+, debug target API 34). The iPhone app uses native SwiftUI (iOS 17+) with the same remote, editable grid, eight visual templates, independent hand preference, accent colors and shortcuts. See [iPhone setup](ios/README.md) and [iOS compatibility research](docs/IOS_RESEARCH.md) for platform differences and verification.
 
 ## Screenshots

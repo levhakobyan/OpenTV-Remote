@@ -1,5 +1,7 @@
 # OpenTV-Remote downloads
 
+Public site: **https://levhakobyan.github.io/OpenTV-Remote/**. The project-naming cleanup is published as [v0.9.1](https://github.com/levhakobyan/OpenTV-Remote/releases/tag/v0.9.1); its APK and matching checksum are attached to that release.
+
 `index.html` is the English template shared by local APK sharing and GitHub Pages. The page has no external scripts, fonts, analytics or account requirement. Its three-image remote gallery uses bundled PNG screenshots, full-size links and a touch-scroll layout on narrow screens. It describes the free/open-source MIT licensing and publishes the license beside the downloads. It includes a mobile-friendly iPhone source-install guide covering Xcode signing, Developer Mode, developer trust, free-profile renewal and local-network setup; the published version links directly to the repository source ZIP. Generated files live under ignored `build/` directories; do not publish the template with unresolved placeholders.
 
 ## Local APK sharing
