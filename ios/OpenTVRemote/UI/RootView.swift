@@ -8,11 +8,11 @@ struct RootView: View {
     Group { if store.selected != nil { RemoteScreen() } else { DevicesView() } }
       .id(store.language)
       .environment(\.locale, store.language.locale)
-      .environment(\.luma, store.palette).tint(Color(rgb: store.palette.accent))
+      .environment(\.remotePalette, store.palette).tint(Color(rgb: store.palette.accent))
       .preferredColorScheme(.dark)
       .sheet(item: $store.sheet) { sheet in
         SheetRouter(sheet: sheet).id(store.language).environment(store)
-          .environment(\.locale, store.language.locale).environment(\.luma, store.palette)
+          .environment(\.locale, store.language.locale).environment(\.remotePalette, store.palette)
           .tint(Color(rgb: store.palette.accent))
           .presentationBackground(Color(rgb: store.palette.background)).preferredColorScheme(.dark)
       }
@@ -46,7 +46,7 @@ struct RootView: View {
 }
 struct RemoteScreen: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var code = ""
   @State private var pairing = false
   @State private var confirmLegacy = false

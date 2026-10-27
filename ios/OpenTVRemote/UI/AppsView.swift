@@ -176,7 +176,7 @@ struct AboutView: View {
       Form {
         Section {
           HStack(spacing: 14) {
-            LumaMark()
+            RemoteMark()
             VStack(alignment: .leading) {
               Text("OpenTV-Remote").font(.title2.weight(.semibold))
               Text(L10n.text("iPhone · 0.9.0 development")).foregroundStyle(.secondary)

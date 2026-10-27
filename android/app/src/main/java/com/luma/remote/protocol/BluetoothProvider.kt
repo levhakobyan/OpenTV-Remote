@@ -71,7 +71,7 @@ class BluetoothProvider(private val context:Context,private val mouse:Boolean=tr
                             else state.value=RemoteState(Phase.PAIRING,"Phone HID ready. Make it discoverable and pair from the TV.",messageRes=R.string.status_phone_hid_ready_make_it_discoverable_and_pair_from_the_tv)
                         } else {
                             timeout?.cancel()
-                            state.value=RemoteState(Phase.ERROR,"Android ended phone HID registration. Return to OpenTV-Remote and retry HID setup or reconnect the paired TV. This does not confirm a TV compatibility failure.",messageRes=R.string.status_android_ended_phone_hid_registration_return_to_luma_and_retry_hid)
+                            state.value=RemoteState(Phase.ERROR,"Android ended phone HID registration. Return to OpenTV-Remote and retry HID setup or reconnect the paired TV. This does not confirm a TV compatibility failure.",messageRes=R.string.status_android_ended_phone_hid_registration_return_to_opentv_remote_and_retry_hid)
                         }
                     }
                     override fun onConnectionStateChanged(device:BluetoothDevice,status:Int) {
@@ -79,7 +79,7 @@ class BluetoothProvider(private val context:Context,private val mouse:Boolean=tr
                         if(target==null) { if(status==BluetoothProfile.STATE_CONNECTED)state.value=RemoteState(Phase.PAIRING,"TV paired. Refresh the list and select it to continue.",messageRes=R.string.status_tv_paired_refresh_the_list_and_select_it_to_continue);return }
                         if(device!=target)return
                         if(status==BluetoothProfile.STATE_CONNECTED)ready()
-                        else if(status==BluetoothProfile.STATE_DISCONNECTED)state.value=RemoteState(Phase.ERROR,"TV disconnected Bluetooth. Keep OpenTV-Remote open, then reconnect.",messageRes=R.string.status_tv_disconnected_bluetooth_keep_luma_open_then_reconnect)
+                        else if(status==BluetoothProfile.STATE_DISCONNECTED)state.value=RemoteState(Phase.ERROR,"TV disconnected Bluetooth. Keep OpenTV-Remote open, then reconnect.",messageRes=R.string.status_tv_disconnected_bluetooth_keep_opentv_remote_open_then_reconnect)
                     }
                     override fun onGetReport(device:BluetoothDevice,type:Byte,id:Byte,bufferSize:Int) {
                         if(attempt!=generation || type!=BluetoothHidDevice.REPORT_TYPE_INPUT)return

@@ -44,7 +44,7 @@ class CanvasPresetsTest {
                 actual.put("${profile.getString("id")}/apps$count/${hand.name.lowercase()}/${definition.getString("ios")}",JSONArray(values))
             }
         }
-        System.getenv("LUMA_CANVAS_SNAPSHOT_OUTPUT")?.let { File(it).writeText(JSONObject().put("cases",actual).toString(2)+"\n") }
+        System.getenv("OPENTV_CANVAS_SNAPSHOT_OUTPUT")?.let { File(it).writeText(JSONObject().put("cases",actual).toString(2)+"\n") }
         val expected=fixture.getJSONObject("cases")
         assertEquals("Fixture coverage must include every generated case",actual.keySet(),expected.keySet())
         for(key in actual.keySet())assertEquals(key,expected.getJSONArray(key).toString(),actual.getJSONArray(key).toString())

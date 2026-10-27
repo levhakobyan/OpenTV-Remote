@@ -1,8 +1,8 @@
 import XCTest
 
-@testable import LumaCore
+@testable import OpenTVRemoteCore
 
-final class LumaCoreTests: XCTestCase {
+final class OpenTVRemoteCoreTests: XCTestCase {
   func testFittingCapsSparseLayoutsAndKeepsDenseLayoutsScrollable() {
     XCTAssertEqual(CanvasFit.rowHeight(cell: 56, available: 800, rows: 1, gap: 4), 56)
     XCTAssertEqual(CanvasFit.rowHeight(cell: 140, available: 1000, rows: 2, gap: 4), 72)
@@ -68,7 +68,7 @@ final class LumaCoreTests: XCTestCase {
         }
       }
     }
-    if let path = ProcessInfo.processInfo.environment["LUMA_CANVAS_SNAPSHOT_OUTPUT"] {
+    if let path = ProcessInfo.processInfo.environment["OPENTV_CANVAS_SNAPSHOT_OUTPUT"] {
       let encoder = JSONEncoder()
       encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
       try encoder.encode(CanvasSnapshot(cases: actual)).write(to: URL(fileURLWithPath: path))
@@ -232,7 +232,7 @@ final class LumaCoreTests: XCTestCase {
   func testLanguageBundleLookupChangesImmediatelyWithoutTranslatingUserContent() throws {
     let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
       .deletingLastPathComponent().deletingLastPathComponent()
-    let resources = try XCTUnwrap(Bundle(path: root.appendingPathComponent("LumaRemote").path))
+    let resources = try XCTUnwrap(Bundle(path: root.appendingPathComponent("OpenTVRemote").path))
     XCTAssertEqual(L10n.text("Find my TV", language: .english, resources: resources), "Find my TV")
     XCTAssertEqual(
       L10n.text("Find my TV", language: .russian, resources: resources), "Найти телевизор")

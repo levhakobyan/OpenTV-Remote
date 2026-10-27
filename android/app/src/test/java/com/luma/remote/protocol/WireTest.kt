@@ -39,7 +39,7 @@ class WireTest {
         Wire.write(out,a);Wire.write(out,b);val input=ByteArrayInputStream(out.toByteArray());assertArrayEquals(a,Wire.frame(input));assertArrayEquals(b,Wire.frame(input));assertEquals(0,input.available())
     }
     @Test fun fragmentedStreamStillReadsCompleteFrame() {
-        val msg=Wire.string(1,"Luma TV");val out=ByteArrayOutputStream();Wire.write(out,msg)
+        val msg=Wire.string(1,"OpenTV TV");val out=ByteArrayOutputStream();Wire.write(out,msg)
         val input=object:ByteArrayInputStream(out.toByteArray()) { override fun read(b:ByteArray,off:Int,len:Int)=super.read(b,off,minOf(len,1)) }
         assertArrayEquals(msg,Wire.frame(input))
     }

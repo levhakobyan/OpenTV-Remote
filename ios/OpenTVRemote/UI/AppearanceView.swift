@@ -16,7 +16,7 @@ struct AppearanceView: View {
             .foregroundStyle(
               Color(rgb: preview.muted))
           HStack {
-            LumaMark()
+            RemoteMark()
             Spacer()
             VStack(spacing: 10) {
               Image(systemName: "speaker.wave.3")
@@ -78,7 +78,7 @@ struct AppearanceView: View {
         .navigationBarTitleDisplayMode(.inline).toolbar {
           ToolbarItem(placement: .topBarLeading) { Button(L10n.text("Cancel")) { dismiss() } }
         }
-    }.environment(\.luma, preview).foregroundStyle(Color(rgb: preview.text)).tint(
+    }.environment(\.remotePalette, preview).foregroundStyle(Color(rgb: preview.text)).tint(
       Color(rgb: preview.accent)
     ).onAppear {
       hex = store.accent
@@ -89,7 +89,7 @@ struct AppearanceView: View {
 
 struct LanguageView: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     Panel(title: L10n.text("Language")) {
       VStack(alignment: .leading, spacing: 16) {

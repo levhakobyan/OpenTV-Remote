@@ -7,7 +7,7 @@ import subprocess
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('app', type=Path, help='Built LumaRemote.app directory')
+parser.add_argument('app', type=Path, help='Built OpenTVRemote.app directory')
 args = parser.parse_args()
 app = args.app
 with (app / 'Info.plist').open('rb') as stream:

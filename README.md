@@ -20,7 +20,7 @@ The same eight preset geometries, capabilities, app slots and hand variants are 
 
 The TV Companion app and its phone-side transports have been removed. Current pointer support depends on an implemented native TV provider or Android Bluetooth HID; there is no separately installed TV receiver or Internet relay.
 
-The display name is now **OpenTV-Remote**. Existing `com.luma.remote` / `com.luma.remote.ios` application IDs, Xcode project names and credential namespaces are intentionally retained so installed-app updates preserve pairing and layouts. Older verification records/screenshots may show the former Luma Remote branding.
+The display name is now **OpenTV-Remote**. Existing `com.luma.remote` / `com.luma.remote.ios` application IDs and credential namespaces are intentionally retained so installed-app updates preserve pairing and layouts. Project, scheme, module and source-file names use OpenTVRemote. Older verification records/screenshots may show the former Luma Remote branding.
 
 ## Project structure
 
@@ -33,7 +33,7 @@ scripts/    Project utilities, including the APK sharing script
 tools/      Local TV protocol receivers for development testing
 ```
 
-Open `android/` in Android Studio or `ios/LumaRemote.xcodeproj` in Xcode. The [iPhone parity checklist](docs/IOS_PARITY.md) records shared behavior and remaining hardware qualification. Platform credentials and build products remain separate. The outer workspace folder stays in its current location.
+Open `android/` in Android Studio or `ios/OpenTVRemote.xcodeproj` in Xcode. The [iPhone parity checklist](docs/IOS_PARITY.md) records shared behavior and remaining hardware qualification. Platform credentials and build products remain separate. The outer workspace folder stays in its current location.
 
 **This is a development build, not a claim of universal TV compatibility.** Android includes real Android TV Remote v2, Samsung Tizen WebSocket, legacy LG SSAP, Bluetooth HID. Casting has been removed from both phone apps. iPhone has separate provider and platform limits described below. Fire TV Wi-Fi, Roku ECP, screen mirroring and secure-only LG port 3001 are not offered. See the [Android compatibility matrix](docs/RESEARCH.md), [iOS matrix](docs/IOS_RESEARCH.md) and [verification record](docs/TESTING.md).
 
@@ -51,7 +51,7 @@ Run the command from the workspace root. From inside `android/`, use `./gradlew 
 
 ## GitHub Pages downloads
 
-The checked-in [Pages workflow](.github/workflows/pages.yml) publishes an English static download page from verified GitHub Release assets. It keeps APKs and signing keys out of Git, preserves the APK's existing signature, and shows an honest pending page before the first release. Follow [Pages and release setup](downloads/README.md) after pushing the repository. No deployment has been performed locally.
+The checked-in [Pages workflow](.github/workflows/pages.yml) publishes an English static download page from verified GitHub Release assets. It keeps APKs and signing keys out of Git, preserves the APK's existing signature, and shows an honest pending page before the first release. The public [download site](https://levhakobyan.github.io/OpenTV-Remote/) includes Android releases, remote screenshots and iPhone installation steps. See [Pages and release maintenance](downloads/README.md) for updates.
 
 ## Download the APK on a phone
 
@@ -75,11 +75,11 @@ Allow installation from your browser only when you choose to install the debug A
 
 ## iPhone
 
-Open `ios/LumaRemote.xcodeproj`, choose **LumaRemote** and an iPhone Simulator, then Run. For a physical iPhone, select your own signing team and Run on the connected phone. No signing team was selected or created during implementation; no signed IPA/TestFlight release is supplied. The Android APK cannot install on iOS.
+Open `ios/OpenTVRemote.xcodeproj`, choose **OpenTVRemote** and an iPhone Simulator, then Run. For a physical iPhone, select your own signing team and Run on the connected phone. No signing team was selected or created during implementation; no signed IPA/TestFlight release is supplied. The Android APK cannot install on iOS.
 
 ```sh
 swift test --package-path ios
-xcodebuild -project ios/LumaRemote.xcodeproj -scheme LumaRemote \
+xcodebuild -project ios/OpenTVRemote.xcodeproj -scheme OpenTVRemote \
   -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build
 ```
 
@@ -189,7 +189,7 @@ Paths below are relative to `android/app/src/main/java/com/luma/remote/`.
 - `protocol/BluetoothProvider.kt`: system HID registration and press/release reports.
 - `data/Vault.kt`: AES-GCM encrypted TLS identity/pairing secrets protected by Android Keystore; backups/transfers disabled.
 - `RemoteViewModel.kt`: selected device, command serialization, foreground/network transitions and saved TVs.
-- `ui/LumaApp.kt`, `ui/remote/RemoteScreen.kt`: compact Compose onboarding, remote/keypad/shortcuts, pairing, discovery and connection recovery.
+- `ui/OpenTVApp.kt`, `ui/remote/RemoteScreen.kt`: compact Compose onboarding, remote/keypad/shortcuts, pairing, discovery and connection recovery.
 
 No account, telemetry SDK, microphone access, TV Accessibility service or ADB-based TV control is included. See [research and dependency notes](docs/RESEARCH.md).
 

@@ -7,7 +7,7 @@ struct CommandKey: View {
   var transparent = false
   var enabled = true
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var pressed = false
   @GestureState private var contact = false
   @State private var holdToken = UUID()
@@ -95,7 +95,7 @@ struct CommandKey: View {
   private func haptic() { UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 0.6) }
 }
 struct DPad: View {
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     GeometryReader { g in
       let side = min(g.size.width, g.size.height)
@@ -122,7 +122,7 @@ struct DPad: View {
 }
 struct Rocker: View {
   let kind: CanvasKind
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     VStack(spacing: 0) {
       CommandKey(command: kind.keys[0], transparent: true)
@@ -136,7 +136,7 @@ struct Rocker: View {
 }
 struct TouchSurface: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var position: CGPoint?
   @State private var anchor: CGSize = .zero
   @State private var last = Date.distantPast
@@ -222,7 +222,7 @@ struct NumberPad: View {
 struct CanvasControl: View {
   let item: CanvasItem
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     switch item.kind {
     case .key: if let command = item.command { CommandKey(command: command, label: item.w >= 2) }

@@ -5,7 +5,7 @@ struct PresetsView: View {
   let apply: (TVProfile) -> Void
   @Environment(RemoteStore.self) private var store
   @Environment(\.dismiss) private var dismiss
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var chosen: CanvasTemplate?
   @State private var saved: SavedPreset?
   @State private var saveName = ""

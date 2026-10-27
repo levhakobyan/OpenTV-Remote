@@ -32,7 +32,7 @@ class WebOsProvider(private val vault: Vault): RemoteProvider {
                 val payload=JSONObject().put("pairingType","PROMPT").put("manifest",manifest)
                 vault.secret("lg:${device.id}")?.let { payload.put("client-key",it) }
                 webSocket.send(JSONObject().put("id","register").put("type","register").put("payload",payload).toString())
-                state.value=RemoteState(Phase.PAIRING,"Accept OpenTV-Remote on your TV",messageRes=R.string.status_accept_luma_remote_on_your_tv)
+                state.value=RemoteState(Phase.PAIRING,"Accept OpenTV-Remote on your TV",messageRes=R.string.status_accept_opentv_remote_on_your_tv)
             }
             override fun onMessage(webSocket:WebSocket,text:String) {
                 runCatching {

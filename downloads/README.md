@@ -26,7 +26,7 @@ A public repository makes both source and download page straightforward to acces
 
 1. Build/test the Android APK locally with the same signing identity used for previous installations.
 2. Run `python3 tools/prepare_downloads.py` again.
-3. Open **Releases → Draft a new release** in GitHub. Choose a version tag, for example `v0.9.0`, and describe this as a development preview. A prerelease is supported.
+3. Open **Releases → Draft a new release** in GitHub. Choose a version tag, for example `v0.9.1`, and describe this as a development preview. A prerelease is supported.
 4. Upload **both** files from `build/downloads/` before publishing:
    - `opentv-remote-debug.apk`
    - `opentv-remote-debug.apk.sha256`
@@ -40,7 +40,7 @@ The newest published release (including prereleases) is selected by publication 
 
 Pages does **not** build or resign the APK. Fresh GitHub runners would otherwise generate different debug keys, preventing updates over existing installs. The current package is debug-signed and is intended for development testing. Keep its local signing key backed up privately if you need repeatable updates; never add it to Git. A later production signing change needs a deliberate upgrade/distribution plan. SHA-256 checks detect inconsistent files, not independent publisher identity.
 
-The Android package ID and iOS bundle ID remain unchanged after the display-name rebrand, preserving the existing installation's pairing/layout namespaces. The iOS project/scheme remains `ios/LumaRemote.xcodeproj` / `LumaRemote`. The page offers no signed IPA or TestFlight link; iPhone users build/sign through Xcode.
+The Android package ID and iOS bundle ID remain unchanged after the display-name rebrand, preserving the existing installation's pairing/layout namespaces. The iOS project/scheme is `ios/OpenTVRemote.xcodeproj` / `OpenTVRemote`. The page offers no signed IPA or TestFlight link; iPhone users build/sign through Xcode.
 
 ## Verification
 

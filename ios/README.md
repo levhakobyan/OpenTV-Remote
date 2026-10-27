@@ -1,24 +1,24 @@
 # OpenTV-Remote for iPhone
 
-Native SwiftUI, iOS 17+. The remote/editor, eight templates, joined controls, independent hand preference, accents, shortcuts and connection UX follow Android. Development build; physical TV/iPhone qualification remains pending. No signed IPA, TestFlight release or Internet relay is included.
+Native SwiftUI, iOS 17+. Current packaging version: 0.9.1 (build 13). The remote/editor, eight templates, joined controls, independent hand preference, accents, shortcuts and connection UX follow Android. Development build; physical TV/iPhone qualification remains pending. No signed IPA, TestFlight release or Internet relay is included.
 
 ## Open and run
 
-Open **LumaRemote.xcodeproj**, select **LumaRemote**, choose an installed iPhone Simulator and Run. The app has no external package dependencies. No CocoaPods/XcodeGen or OpenTV-Remote backend credentials are needed.
+Open **OpenTVRemote.xcodeproj**, select **OpenTVRemote**, choose an installed iPhone Simulator and Run. The app has no external package dependencies. No CocoaPods/XcodeGen or OpenTV-Remote backend credentials are needed.
 
-For a physical iPhone, choose your own development team in Signing & Capabilities, connect the phone and Run. No signing identity, profile, team or Apple account was created/selected during implementation. An unsigned arm64 build establishes compilation, not physical installation or distribution. The Android APK cannot install on iOS.
+For a physical iPhone, choose your own development team in Signing & Capabilities, connect the phone and Run. The checked-in signing team and bundle identifier are preserved for existing installations. An unsigned arm64 build establishes compilation, not physical installation or distribution. The Android APK cannot install on iOS.
 
 From the workspace root:
 
 ```sh
 swift test --package-path ios
-xcodebuild -project ios/LumaRemote.xcodeproj -scheme LumaRemote \
+xcodebuild -project ios/OpenTVRemote.xcodeproj -scheme OpenTVRemote \
   -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build
 ```
 
 Verified with Xcode 27.1 / Swift 6.4 in Swift 5 language mode, iPhone 17 Pro Simulator / iOS 26.4, and an unsigned arm64 device build. See [actual checks](../docs/TESTING.md).
 
-The local [Simulator app bundle](build/LumaRemote-Simulator.zip) has a [SHA-256 sidecar](build/LumaRemote-Simulator.zip.sha256). Unzip and drag `LumaRemote.app` onto a compatible Simulator. It is not an iPhone-installable IPA. The project remains the source for building/signing a device version.
+The local [Simulator app bundle](build/OpenTVRemote-Simulator.zip) has a [SHA-256 sidecar](build/OpenTVRemote-Simulator.zip.sha256). Unzip and drag `OpenTVRemote.app` onto a compatible Simulator. It is not an iPhone-installable IPA. The project remains the source for building/signing a device version.
 
 ## Connect
 
@@ -29,7 +29,7 @@ Keep phone/TV on trusted home Wi-Fi, turn on the TV and choose **Find my TV**. B
 - **LG webOS:** explicit unencrypted-network consent, legacy SSAP 3000, TV approval and non-mutating service/pointer probes. Secure-only 3001 firmware is unsupported. This provider compiles but has not been runtime-qualified in iOS.
 
 
-**Physical-iPhone Samsung/LG SSDP needs Apple's restricted multicast entitlement.** The optional `LumaRemote/Multicast.entitlements` file is not enabled in default signing. After Apple grants your App ID access, set Code Signing Entitlements to that file and use a matching profile. Without the grant, Android TV's declared Bonjour and **Connect by IP** remain available. Manual IP checks actual metadata/services; only local IPv4 literals are accepted. Simulator additionally accepts loopback for fixtures.
+**Physical-iPhone Samsung/LG SSDP needs Apple's restricted multicast entitlement.** The optional `OpenTVRemote/Multicast.entitlements` file is not enabled in default signing. After Apple grants your App ID access, set Code Signing Entitlements to that file and use a matching profile. Without the grant, Android TV's declared Bonjour and **Connect by IP** remain available. Manual IP checks actual metadata/services; only local IPv4 literals are accepted. Simulator additionally accepts loopback for fixtures.
 
 Saved TVs switch from the compact toolbar. Stable discovery IDs refresh saved addresses. Layout/apps are separate per TV. Backgrounding stops connections/holds/motion; foreground reconnects. Established connection loss gets one retry; security/pairing denial does not loop prompts. Commands are never replayed.
 
@@ -63,7 +63,9 @@ No iOS Bluetooth remote provider is implemented: Core Bluetooth communication do
 
 ## Source ownership
 
-`Core/` owns pure models, canvas/templates, palette and codecs; `LumaRemote/Protocols/` owns real providers; `Data/` owns Keychain/RSA; `Discovery/` owns network classification; `State/` owns selected-session/lifecycle/persistence; `UI/` and `UI/Editor/` own native views/drafts; `Resources/` owns native English/Russian localization. `Tests/CoreTests/` runs without a simulator; `UITests/` drives actual native UI and protocol sockets.
+`Core/` owns pure models, canvas/templates, palette and codecs; `OpenTVRemote/Protocols/` owns real providers; `Data/` owns Keychain/RSA; `Discovery/` owns network classification; `State/` owns selected-session/lifecycle/persistence; `UI/` and `UI/Editor/` own native views/drafts; `Resources/` owns native English/Russian localization. `Tests/CoreTests/` runs without a simulator; `UITests/` drives actual native UI and protocol sockets.
+
+The product, shared scheme and SwiftPM core module are `OpenTVRemote`, `OpenTVRemote` and `OpenTVRemoteCore`. The bundle ID (`com.luma.remote.ios`), Keychain aliases, saved-preference keys and isolated QA suite/launch arguments retain their existing identifiers so upgrades keep credentials and settings. Test canvas exports use `OPENTV_CANVAS_SNAPSHOT_OUTPUT`; screenshot logs use `OPENTV_QA_SCREENSHOT`.
 
 The checked-in Xcode project includes all current sources and localized resources. Preserve user-owned signing team and project settings when adding/removing files. The obsolete project generator was removed so routine maintenance cannot overwrite signing or project settings. `swift ios/scripts/GenerateIcon.swift` regenerates the launcher from vector drawing. [Asset credits](../docs/THIRD_PARTY_ASSETS.md) cover service marks. There is no cross-phone sync or Android credential transfer.
 
@@ -73,13 +75,13 @@ Use a Python environment with **pyOpenSSL**. Use test input only: the Android re
 
 ```sh
 # Workspace root, terminal 1:
-python3 -u tools/fake_android_tv.py --ping-interval 0 > /tmp/luma-android-tv.log 2>&1
+python3 -u tools/fake_android_tv.py --ping-interval 0 > /tmp/opentv-android-tv.log 2>&1
 
 # Terminal 2, same Python environment:
-python3 -u tools/ios_qa_bridge.py --android-log /tmp/luma-android-tv.log
+python3 -u tools/ios_qa_bridge.py --android-log /tmp/opentv-android-tv.log
 
 # Terminal 3, use an actual installed simulator UDID:
-xcodebuild -project ios/LumaRemote.xcodeproj -scheme LumaRemote \
+xcodebuild -project ios/OpenTVRemote.xcodeproj -scheme OpenTVRemote \
   -destination 'platform=iOS Simulator,id=YOUR_SIMULATOR_UDID' \
   -parallel-testing-enabled NO test
 ```
@@ -88,4 +90,4 @@ Debug tests use a separate preferences suite and real transport sockets, not see
 
 ### If the app fails to open
 
-Debug and Release retain `$(inherited) @executable_path/Frameworks` in Runpath Search Paths. Validate the built app with `python3 tools/check_ios_bundle.py /path/to/LumaRemote.app`. Rebuild with Xcode Run, then close and reopen from the phone icon. Do not delete the app as the first troubleshooting step; that would remove saved settings.
+Debug and Release retain `$(inherited) @executable_path/Frameworks` in Runpath Search Paths. Validate the built app with `python3 tools/check_ios_bundle.py /path/to/OpenTVRemote.app`. Rebuild with Xcode Run, then close and reopen from the phone icon. Do not delete the app as the first troubleshooting step; that would remove saved settings.

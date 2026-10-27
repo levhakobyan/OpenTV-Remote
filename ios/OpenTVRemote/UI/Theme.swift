@@ -9,13 +9,13 @@ extension Color {
 }
 private struct PaletteKey: EnvironmentKey { static let defaultValue = AccentPalette("D5F69A") }
 extension EnvironmentValues {
-  var luma: AccentPalette {
+  var remotePalette: AccentPalette {
     get { self[PaletteKey.self] }
     set { self[PaletteKey.self] = newValue }
   }
 }
-struct LumaMark: View {
-  @Environment(\.luma) private var p
+struct RemoteMark: View {
+  @Environment(\.remotePalette) private var p
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 12).fill(Color(rgb: p.accent)).frame(width: 40, height: 64)
@@ -35,7 +35,7 @@ struct IconButton: View {
   let title: String
   var prominent = false
   let action: () -> Void
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     Button(action: action) {
       Image(systemName: symbol).font(.system(size: 22, weight: .medium)).frame(
@@ -49,7 +49,7 @@ struct PrimaryButton: View {
   let title: String
   var symbol: String?
   let action: () -> Void
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     Button(action: action) {
       HStack {
@@ -64,7 +64,7 @@ struct Panel<Content: View>: View {
   let title: String
   @ViewBuilder let content: () -> Content
   @Environment(\.dismiss) private var dismiss
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     NavigationStack {
       content().background(Color(rgb: p.background)).navigationTitle(title)
@@ -76,7 +76,7 @@ struct Panel<Content: View>: View {
   }
 }
 extension View {
-  func lumaCard() -> some View {
+  func remoteCard() -> some View {
     padding(16).background(Color(rgb: 0x1F2723), in: RoundedRectangle(cornerRadius: 24))
   }
 }

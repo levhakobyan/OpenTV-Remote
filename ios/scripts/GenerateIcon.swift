@@ -6,7 +6,7 @@ import UniformTypeIdentifiers
 // Explicit RGBX drawing avoids an unsupported three-channel AppKit bitmap context.
 // No display, Retina scale, or ambient NSGraphicsContext is involved.
 let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-let folder = root.appendingPathComponent("LumaRemote/Assets.xcassets/AppIcon.appiconset")
+let folder = root.appendingPathComponent("OpenTVRemote/Assets.xcassets/AppIcon.appiconset")
 try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
 let size = 1024
 let context = CGContext(

@@ -45,7 +45,7 @@ import java.util.Locale
     val valid=AccentPalette.normalize(hex)
     val pureHue=Color(android.graphics.Color.HSVToColor(floatArrayOf(hue,1f,1f)))
     val actual=Color(android.graphics.Color.HSVToColor(floatArrayOf(hue,saturation,brightness)))
-    LumaTheme(valid ?: initial) {
+    OpenTVTheme(valid ?: initial) {
         AlertDialog(containerColor=Ink,onDismissRequest=onDismiss,title={Text(strings.getString(R.string.ui_choose_a_color))},text={
             Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
                 Text(strings.getString(R.string.ui_drag_to_choose_shade_and_brightness),color=Muted,fontSize=13.sp)

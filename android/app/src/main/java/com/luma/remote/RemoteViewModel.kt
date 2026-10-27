@@ -263,7 +263,7 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
         }
     }
     fun bonded():List<TvDevice> = BluetoothProvider(getApplication()).bonded()
-    fun pause() { foreground=false;setupProvider?.disconnect(); holds.stop();stopMotion(); while(commands.tryReceive().isSuccess) { }; retry?.cancel(); connection?.cancel(); observation?.cancel(); provider?.disconnect(); remote.value=RemoteState(Phase.DISCONNECTED,"Connection paused while OpenTV-Remote is in the background",messageRes=R.string.status_connection_paused_while_luma_is_in_the_background); discovery.stop() }
+    fun pause() { foreground=false;setupProvider?.disconnect(); holds.stop();stopMotion(); while(commands.tryReceive().isSuccess) { }; retry?.cancel(); connection?.cancel(); observation?.cancel(); provider?.disconnect(); remote.value=RemoteState(Phase.DISCONNECTED,"Connection paused while OpenTV-Remote is in the background",messageRes=R.string.status_connection_paused_while_opentv_remote_is_in_the_background); discovery.stop() }
     fun resume() { foreground=true;
         setupProvider?.let { setup ->
             runCatching { setup.resumePairing() }.onFailure { bluetoothSetup.value=RemoteState(Phase.ERROR,"Could not restore phone HID. Check Nearby devices permission, then retry setup.",messageRes=R.string.status_could_not_restore_phone_hid_check_nearby_devices_permission_then) }

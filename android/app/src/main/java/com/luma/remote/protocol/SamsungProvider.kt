@@ -95,7 +95,7 @@ internal class SamsungProvider(
             override fun onOpen(webSocket:WebSocket,response:Response) {
                 synchronized(owner) {
                 if(!current()) { webSocket.cancel();return }
-                state.value=RemoteState(Phase.PAIRING,if(token==null)"On your TV, allow OpenTV-Remote. If no prompt appears, check Device Connection Manager → Device List." else "Restoring Samsung TV permission…",legacyConnection=legacy,messageRes=if(token==null)R.string.status_on_your_tv_allow_luma_remote_if_no_prompt_appears_check_device_co else R.string.status_restoring_samsung_tv_permission)
+                state.value=RemoteState(Phase.PAIRING,if(token==null)"On your TV, allow OpenTV-Remote. If no prompt appears, check Device Connection Manager → Device List." else "Restoring Samsung TV permission…",legacyConnection=legacy,messageRes=if(token==null)R.string.status_on_your_tv_allow_opentv_remote_if_no_prompt_appears_check_device_co else R.string.status_restoring_samsung_tv_permission)
                 }
             }
             override fun onMessage(webSocket:WebSocket,text:String) {
@@ -118,9 +118,9 @@ internal class SamsungProvider(
                         "ms.channel.unauthorized" -> {
                             if(!legacy && token!=null && !authRetry) {
                                 authRetry=true;secrets.remove("samsung-token:${tv.id}");openSocket(attempt)
-                            } else fail(attempt,"TV declined permission. Allow OpenTV-Remote in the TV's Device Connection Manager, then reconnect.",retryable=false,messageRes=R.string.status_tv_declined_permission_allow_luma_remote_in_the_tv_s_device_conne)
+                            } else fail(attempt,"TV declined permission. Allow OpenTV-Remote in the TV's Device Connection Manager, then reconnect.",retryable=false,messageRes=R.string.status_tv_declined_permission_allow_opentv_remote_in_the_tv_s_device_conne)
                         }
-                        "ms.channel.timeOut" -> fail(attempt,"TV approval timed out. Reconnect and accept OpenTV-Remote on the TV.",retryable=false,messageRes=R.string.status_tv_approval_timed_out_reconnect_and_accept_luma_remote_on_the_tv)
+                        "ms.channel.timeOut" -> fail(attempt,"TV approval timed out. Reconnect and accept OpenTV-Remote on the TV.",retryable=false,messageRes=R.string.status_tv_approval_timed_out_reconnect_and_accept_opentv_remote_on_the_tv)
                         "ms.error" -> fail(attempt,"Samsung TV declined this request. Its firmware may not support this local remote feature.",retryable=false,messageRes=R.string.status_samsung_tv_declined_this_request_its_firmware_may_not_support_thi)
                     }
                 }.onFailure { if(current())fail(attempt,"Samsung TV sent an invalid response. Reconnect to try again.",retryable=false,messageRes=R.string.status_samsung_tv_sent_an_invalid_response_reconnect_to_try_again) }
@@ -135,7 +135,7 @@ internal class SamsungProvider(
             }
             override fun onClosed(webSocket:WebSocket,code:Int,reason:String) { synchronized(owner) { if(current())fail(attempt,"Samsung TV disconnected. Reconnect to continue.",messageRes=R.string.status_samsung_tv_disconnected_reconnect_to_continue) } }
         })
-        timer=scope.launch { delay(approvalTimeout);synchronized(owner) { if(current() && state.value.phase!=Phase.READY)fail(attempt,"TV approval timed out. Reconnect, then allow OpenTV-Remote on your TV.",retryable=false,messageRes=R.string.status_tv_approval_timed_out_reconnect_then_allow_luma_remote_on_your_tv) } }
+        timer=scope.launch { delay(approvalTimeout);synchronized(owner) { if(current() && state.value.phase!=Phase.READY)fail(attempt,"TV approval timed out. Reconnect, then allow OpenTV-Remote on your TV.",retryable=false,messageRes=R.string.status_tv_approval_timed_out_reconnect_then_allow_opentv_remote_on_your_tv) } }
     }
     private fun fail(attempt:Int,message:String,messageRes:Int,offerLegacy:Boolean=false,retryable:Boolean=true,reset:Boolean=false)=synchronized(owner) {
         if(attempt!=generation)return@synchronized

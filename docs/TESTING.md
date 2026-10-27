@@ -1,4 +1,4 @@
-# Verification — Luma Remote 0.9.0
+# OpenTV-Remote verification record
 
 **Current scope (2026-10-28):** Casting has been removed from both apps. Older Cast sections are historical evidence only; their server scripts/SDKs/screenshots are no longer part of the product. Current work is native EN/RU localization, shared preset parity and supported phone-side TV providers. The TV Companion app and phone transports have been removed. Earlier receiver tests below are historical, not current product support.
 
@@ -295,3 +295,13 @@ The local browser checks do not prove a GitHub deployment. No remote repository 
 The initial MIT-licensed source was pushed to the user-provided public `levhakobyan/OpenTV-Remote` repository over the existing verified GitHub SSH identity. The local author matches the same account's previous OpenTV-Cast author name/email; no global Git identity was changed. The GitHub Pages source was enabled as GitHub Actions through the user's signed-in browser.
 
 The download page and README now show three genuine remote-app captures: the Android numbers/navigation/playback layout, a Sky-accent full remote, and the native iPhone remote. These use existing development-fixture captures; they are not new physical-TV evidence. Screenshot files are copied into both ready and pending Pages artifacts. Eighteen offline download tests pass, including published gallery files and full-size links. The public README's obsolete manual-only keyboard paragraph was corrected to match the implemented live/manual contract.
+
+### 2026-10-28 — Native project/file cleanup, version 0.9.1
+
+The Xcode project, shared scheme, product/executable, app source directory, app entry point, core module/tests and UI symbols now use OpenTVRemote/OpenTVRemoteCore. Android app/theme/mark source names, launcher drawable, style and safe UI resource identifiers were renamed consistently; its overlooked lowercase onboarding wordmark was replaced with OpenTV-Remote using bounded one-line text. Public guides, source links and commands use the new paths. Historical test-artifact filenames above are evidence labels, not active project references.
+
+The parent independently compared the Xcode project against the previous revision: its content differs exactly by LumaRemote→OpenTVRemote naming substitutions, preserving UUIDs, signing/team, bundle identifiers and runpaths. SecureStore, RemoteStore, Android TV session and Android Vault sources remain byte-identical. Lowercase application IDs, preference/keychain namespaces, PKCS12/TLS aliases and compatibility QA flags remain deliberate upgrade boundaries. No saved data was migrated or reset.
+
+Version0.9.1/build13 passed158 Android unit tests, APK assembly and lint (zero errors; existing warnings remain). The final APK SHA-256 is `dbade14ec184eac6f485d67f57c66525f6fea5982b465cccf361c36348e8b808`; its signing certificate matches the published0.9.0 APK, and its application ID remains `com.luma.remote`. Android runtime rendering was not rechecked because no Android emulator was attached; no physical installation was performed.
+
+Untouched-HEAD baseline and final renamed SwiftPM suites both passed45/45. Generic Simulator ad-hoc and unsigned arm64 iPhone builds and both bundle audits passed. Two final native iPhone Simulator tests passed with TEST SUCCEEDED: language switching/persistence and Russian discovery/About validation. The new canvas exporter produced336runtime cases. The OpenTVRemote-Simulator archive/checksum was validated before removing the obsolete named archive. Final iPhone executable is OpenTVRemote, with unchanged `com.luma.remote.ios` identity and version0.9.1. The final native result is `/private/tmp/opentv-ios-sim/Logs/Test/Test-OpenTVRemote-2026.10.28_02-52-18-+0400.xcresult`.

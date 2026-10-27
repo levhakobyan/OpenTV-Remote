@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import LumaCore
+@testable import OpenTVRemoteCore
 
 final class AndroidIMETests: XCTestCase {
   private func status(

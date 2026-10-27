@@ -1,10 +1,10 @@
 # OpenTV-Remote architecture
 
-The workspace contains native Android (`android/`, Gradle `:app`) and iPhone (`ios/`, Xcode `LumaRemote`) applications. The TV Companion module and its transports have been removed; no cloud relay is implemented. Shared research, product behavior, UI references and acceptance records live under `docs/`; local protocol fixtures live under `tools/`. See [iPhone parity](IOS_PARITY.md).
+The workspace contains native Android (`android/`, Gradle `:app`) and iPhone (`ios/`, Xcode `OpenTVRemote`) applications. The TV Companion module and its transports have been removed; no cloud relay is implemented. Shared research, product behavior, UI references and acceptance records live under `docs/`; local protocol fixtures live under `tools/`. See [iPhone parity](IOS_PARITY.md).
 
 The following source paths are relative to `android/app/src/main/java/com/luma/remote/`:
 
-- `ui/LumaApp.kt`: app shell, theme, onboarding, device management and language selection.
+- `ui/OpenTVApp.kt`: app shell, theme, onboarding, device management and language selection.
 - `ui/remote/RemoteScreen.kt`: connected-remote composition and secondary panels.
 - `ui/remote/RemoteTouchpad.kt`: touch rendering and gesture lifetime; `MotionRemoteDialog.kt` and `TvKeyboardDialog.kt` own those separate modes.
 - `ui/remote/controls/`: reusable command buttons, hold handling, D-pad and joined volume/channel/playback/navigation controls. These components do not depend on the layout editor.
@@ -19,7 +19,7 @@ iOS uses SwiftUI, Network/Security and Keychain. Compose and Android transport A
 ## iPhone ownership
 
 - `ios/Core/`: pure Swift commands/capabilities, grid/templates, palette, shortcuts and bounded wire/Samsung/range codecs. The same source files compile into the app and host-test package.
-- `ios/LumaRemote/State/RemoteStore.swift`: selected session/generation fencing, foreground/network recovery, hold cancellation and preferences. Pairing/security denial does not automatically loop; established connection loss gets one automatic retry.
+- `ios/OpenTVRemote/State/RemoteStore.swift`: selected session/generation fencing, foreground/network recovery, hold cancellation and preferences. Pairing/security denial does not automatically loop; established connection loss gets one automatic retry.
 - `Data/SecureStore.swift`: Keychain credentials and per-install RSA identity, canonical X.509 and public-key extraction. Code proves the first Android TV pairing; later sessions pin the certificate.
 - `Protocols/`: independent Android TV, Samsung and LG transports. Samsung session/task trust handlers build the chain and require explicit leaf trust/pinning. Unknown peers abort before auth; changed pins fail closed, and legacy mode requires consent without sending secure tokens.
 - `UI/` and `UI/Editor/`: native controls, staged appearance/shortcuts, draft geometry/Undo and read-only previews. Accent and hand preference remain separate from presets.
@@ -41,7 +41,7 @@ Named user presets live in the vault under one global `canvas-presets` key, inde
 
 Bluetooth keyboard and mouse use separate report IDs through `BluetoothHidReports`. Setup registers a temporary provider before TV pairing; selecting a bonded TV transfers its ownership to the normal ViewModel connection. Callback generations ignore obsolete registrations. The selected transport owns motion/click/scroll; capabilities gate each operation. Wi-Fi and Bluetooth are selected independently; no hidden cross-transport synchronization exists.
 
-Appearance is global UI state (`accent-color`), independent from per-TV canvas/layout records and global `canvas-presets`. Hand preference is stored separately under `hand-preference`; it influences template construction and All controls rocker placement, never silently transforms saved geometry. `AccentPalette` owns pure RGB validation/tone/contrast math; `LumaTheme` supplies MaterialTheme colors to existing UI. Drawing lambdas capture current composed colors. `AppearanceDialog` stages its selection locally until Use color. Preset previews draw the same model passed to Apply without constructing live controls.
+Appearance is global UI state (`accent-color`), independent from per-TV canvas/layout records and global `canvas-presets`. Hand preference is stored separately under `hand-preference`; it influences template construction and All controls rocker placement, never silently transforms saved geometry. `AccentPalette` owns pure RGB validation/tone/contrast math; `OpenTVTheme` supplies MaterialTheme colors to existing UI. Drawing lambdas capture current composed colors. `AppearanceDialog` stages its selection locally until Use color. Preset previews draw the same model passed to Apply without constructing live controls.
 
 RemoteCanvas.removeEmptyRows is an explicit compaction operation used after deletion, for the contextual gap-removal action and by template construction. Normal loading/moving still uses trailing-only compacted(), preserving existing positions and snap targets. joinMatchingButtons accepts a selected ID; the editor exposes only contextual joining, and unrelated groups remain unchanged.
 

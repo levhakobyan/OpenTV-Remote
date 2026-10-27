@@ -35,7 +35,7 @@ import com.luma.remote.RemoteViewModel
 import com.luma.remote.protocol.*
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable fun LumaApp(vm:RemoteViewModel) {
+@Composable fun OpenTVApp(vm:RemoteViewModel) {
     val strings=LocalContext.current.resources
 
     val welcomed by vm.welcomed.collectAsStateWithLifecycle()
@@ -51,14 +51,14 @@ import com.luma.remote.protocol.*
     var language by remember { mutableStateOf(false) }
     LaunchedEffect(notice) { notice?.let { snackbar.showSnackbar(it); vm.notice.value=null } }
     BackHandler(enabled=welcomed && selected!=null && page!=0) { vm.page.value=0 }
-    LumaTheme(accentHex) {
+    OpenTVTheme(accentHex) {
         Scaffold(contentWindowInsets=WindowInsets(0,0,0,0),containerColor=Ink,snackbarHost={ SnackbarHost(snackbar) },bottomBar={ if(welcomed && !compactRemote) NavigationBar(modifier=Modifier.height(64.dp),containerColor=Ink,tonalElevation=0.dp,windowInsets=WindowInsets(0,0,0,0)) {
             listOf(strings.getString(R.string.ui_remote) to Icons.Outlined.SettingsRemote,strings.getString(R.string.ui_devices) to Icons.Outlined.Tv).forEachIndexed { i,(label,icon) -> NavigationBarItem(selected=page==i,onClick={vm.page.value=i},icon={Icon(icon,null)},label={Text(label)},colors=NavigationBarItemDefaults.colors(indicatorColor=Raised,selectedIconColor=Accent,selectedTextColor=Accent)) }
         } }) { padding ->
             Column(Modifier.fillMaxSize().padding(padding)) {
                 if(!compactRemote)Row(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=2.dp),verticalAlignment=Alignment.CenterVertically) {
-                    LumaMark(Modifier.size(28.dp))
-                    Text("luma",Modifier.padding(start=8.dp).weight(1f),fontSize=19.sp,fontWeight=FontWeight.Bold,letterSpacing=(-0.5).sp)
+                    RemoteMark(Modifier.size(28.dp))
+                    Text("OpenTV-Remote",Modifier.padding(start=8.dp).weight(1f),fontSize=16.sp,fontWeight=FontWeight.Bold,letterSpacing=(-0.5).sp,maxLines=1,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                     IconButton(onClick={language=true}) { Icon(Icons.Outlined.Language,strings.getString(R.string.ui_language),tint=Muted) }
                     IconButton(onClick={appearance=true}) { Icon(Icons.Outlined.Palette,strings.getString(R.string.ui_appearance),tint=Accent) }
                     IconButton(onClick={info=true}) { Icon(Icons.Outlined.Info,strings.getString(R.string.ui_compatibility_privacy),tint=Muted) }
@@ -74,7 +74,7 @@ import com.luma.remote.protocol.*
         LaunchedEffect(appearance,info,language) { if(appearance || info || language)vm.stopHolds() }
         if(language)LanguageDialog {language=false}
         if(appearance)AppearanceDialog(accentHex,onDismiss={appearance=false},save={vm.setAccent(it);appearance=false})
-        if(info) AlertDialog(containerColor=Panel,onDismissRequest={info=false},title={Text(strings.getString(R.string.ui_about_luma))},text={Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+        if(info) AlertDialog(containerColor=Panel,onDismissRequest={info=false},title={Text(strings.getString(R.string.ui_about_opentv_remote))},text={Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             TextButton(onClick={info=false;language=true}) {Icon(Icons.Outlined.Language,null);Spacer(Modifier.width(8.dp));Text(strings.getString(R.string.ui_language))}
             Text(strings.getString(R.string.ui_android_tv_wi_fi_control_reported_working_by_the_user_new_shortcu))
             Text(strings.getString(R.string.ui_bluetooth_android_9_hid_mouse_keyboard_where_supported_touchpad_g))
@@ -91,7 +91,7 @@ import com.luma.remote.protocol.*
 
     Column(Modifier.fillMaxSize().padding(24.dp),verticalArrangement=Arrangement.spacedBy(20.dp)) {
         Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(20.dp)) {
-            LumaMark(Modifier.padding(top=20.dp).size(100.dp))
+            RemoteMark(Modifier.padding(top=20.dp).size(100.dp))
             Text(strings.getString(R.string.ui_your_tv_nwithin_reach),fontSize=32.sp,lineHeight=38.sp,fontWeight=FontWeight.SemiBold)
             Text(strings.getString(R.string.ui_connect_to_your_tv_over_home_wi_fi_no_account_needed),color=Muted,fontSize=16.sp,lineHeight=24.sp)
         }

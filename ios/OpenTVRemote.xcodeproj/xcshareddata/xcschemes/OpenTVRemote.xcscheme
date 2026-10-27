@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "34A04005BCAF206EEC990BD9"
-               BuildableName = "LumaRemote.app"
-               BlueprintName = "LumaRemote"
-               ReferencedContainer = "container:LumaRemote.xcodeproj">
+               BuildableName = "OpenTVRemote.app"
+               BlueprintName = "OpenTVRemote"
+               ReferencedContainer = "container:OpenTVRemote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E5B4A42C1A9B11F842B19C64"
-               BuildableName = "LumaRemoteUITests.xctest"
-               BlueprintName = "LumaRemoteUITests"
-               ReferencedContainer = "container:LumaRemote.xcodeproj">
+               BuildableName = "OpenTVRemoteUITests.xctest"
+               BlueprintName = "OpenTVRemoteUITests"
+               ReferencedContainer = "container:OpenTVRemote.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "34A04005BCAF206EEC990BD9"
-            BuildableName = "LumaRemote.app"
-            BlueprintName = "LumaRemote"
-            ReferencedContainer = "container:LumaRemote.xcodeproj">
+            BuildableName = "OpenTVRemote.app"
+            BlueprintName = "OpenTVRemote"
+            ReferencedContainer = "container:OpenTVRemote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>

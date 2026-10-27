@@ -8,7 +8,7 @@ struct CanvasEditor: View {
   @State var profile: TVProfile
   @Environment(RemoteStore.self) private var store
   @Environment(\.dismiss) private var dismiss
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var selected: String?
   @State private var panel: EditorPanel?
   @State private var history = [TVProfile]()
@@ -149,7 +149,7 @@ private struct EditorDragBoard: View {
   @Binding var selected: String?
   @Binding var resizing: Bool
   let apply: (RemoteCanvas) -> Void
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @Environment(\.scenePhase) private var phase
   @GestureState private var contact = false
   @State private var base: RemoteCanvas?
@@ -418,7 +418,7 @@ struct ControlPicker: View {
   @Binding var profile: TVProfile
   let add: (CanvasItem) -> Void
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var category = 0
   @State private var query = ""
   var body: some View {

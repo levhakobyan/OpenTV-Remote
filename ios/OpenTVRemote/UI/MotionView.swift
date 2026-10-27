@@ -64,7 +64,7 @@ import SwiftUI
 }
 struct MotionView: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @Environment(\.scenePhase) private var phase
   @State private var motion = MotionSession()
   var body: some View {

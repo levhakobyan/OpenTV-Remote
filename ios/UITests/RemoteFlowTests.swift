@@ -215,19 +215,19 @@ final class RemoteFlowTests: XCTestCase {
     XCTAssertTrue(textField.waitForExistence(timeout: 4))
     app.switches["ime-private-input"].tap()
     textField.tap()
-    textField.typeText("Luma iPhone")
+    textField.typeText("OpenTV iPhone")
     app.buttons["Send text"].tap()
     let feedback = app.staticTexts["text-send-feedback"]
     XCTAssertTrue(feedback.waitForExistence(timeout: 3))
     XCTAssertTrue(feedback.label.hasPrefix("Sent to TV"))
-    XCTAssertEqual(textField.value as? String, "Luma iPhone")
+    XCTAssertEqual(textField.value as? String, "OpenTV iPhone")
     try await action("/android/ime/open")
     try await Task.sleep(for: .milliseconds(1200))
     if app.staticTexts["Live keyboard"].exists {
-      textField.typeText("Luma iPhone")
+      textField.typeText("OpenTV iPhone")
     } else {
       app.buttons["Send text"].tap()
-      XCTAssertEqual(textField.value as? String, "Luma iPhone")
+      XCTAssertEqual(textField.value as? String, "OpenTV iPhone")
     }
     app.buttons["Done"].firstMatch.tap()
     let textReceived = try await counts()
@@ -445,10 +445,10 @@ final class RemoteFlowTests: XCTestCase {
     XCTAssertTrue(app.buttons["Акцент: Небесный"].exists)
     capture(app, "iPhone Russian appearance")
     app.buttons["Отмена"].tap()
-    app.buttons["О Luma"].tap()
-    XCTAssertTrue(app.navigationBars["О Luma"].waitForExistence(timeout: 4))
+    app.buttons["О OpenTV-Remote"].tap()
+    XCTAssertTrue(app.navigationBars["О OpenTV-Remote"].waitForExistence(timeout: 4))
     let privacy = app.staticTexts.matching(
-      NSPredicate(format: "label BEGINSWITH %@", "Нет аккаунта Luma")
+      NSPredicate(format: "label BEGINSWITH %@", "Нет аккаунта OpenTV-Remote")
     ).firstMatch
     for _ in 0..<4 {
       if privacy.exists { break }
@@ -469,12 +469,12 @@ final class RemoteFlowTests: XCTestCase {
     let field = app.descendants(matching: .any)["tv-text-input"]
     XCTAssertTrue(field.waitForExistence(timeout: 4))
     field.tap()
-    field.typeText("Luma 42")
+    field.typeText("OpenTV 42")
     app.buttons["Отправить текст"].tap()
     let feedback = app.staticTexts["text-send-feedback"]
     XCTAssertTrue(feedback.waitForExistence(timeout: 4))
     XCTAssertTrue(feedback.label.hasPrefix("Отправлено на ТВ"))
-    XCTAssertEqual(field.value as? String, "Luma 42")
+    XCTAssertEqual(field.value as? String, "OpenTV 42")
     capture(app, "iPhone Russian keyboard")
     app.buttons["Готово"].firstMatch.tap()
     app.buttons["Настроить пульт"].tap()
@@ -559,7 +559,7 @@ final class RemoteFlowTests: XCTestCase {
     let field = app.descendants(matching: .any)["tv-text-input"]
     XCTAssertTrue(field.waitForExistence(timeout: 5))
     field.tap()
-    field.typeText("Luma test 42")
+    field.typeText("OpenTV test 42")
     app.buttons["Send text"].tap()
     let feedback = app.staticTexts["text-send-feedback"]
     XCTAssertTrue(feedback.waitForExistence(timeout: 5))
@@ -651,7 +651,7 @@ final class RemoteFlowTests: XCTestCase {
     let field = app.descendants(matching: .any)["tv-text-input"]
     XCTAssertTrue(field.waitForExistence(timeout: 4))
     field.tap()
-    field.typeText("Luma iPhone")
+    field.typeText("OpenTV iPhone")
     app.buttons["Send text"].tap()
     app.buttons["Done"].firstMatch.tap()
     let typed = try await counts()
@@ -686,12 +686,12 @@ final class RemoteFlowTests: XCTestCase {
   @MainActor private func capture(_ app: XCUIApplication, _ name: String) {
     let screenshot = app.screenshot()
     // Preserve visual evidence even if the Xcode SDK's result-bundle collector fails after tests.
-    let directory = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("LumaQA")
+    let directory = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("OpenTVRemoteQA")
     try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
     let file = directory.appendingPathComponent(
       name.replacingOccurrences(of: " ", with: "-") + ".png")
     if (try? screenshot.pngRepresentation.write(to: file)) != nil {
-      print("LUMA_QA_SCREENSHOT " + file.path)
+      print("OPENTV_QA_SCREENSHOT " + file.path)
     }
     let a = XCTAttachment(screenshot: screenshot)
     a.name = name

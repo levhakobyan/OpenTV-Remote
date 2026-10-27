@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DevicesView: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @State private var ip = ""
   @State private var manual = false
   @State private var finding = false
@@ -13,7 +13,7 @@ struct DevicesView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
         HStack {
-          LumaMark()
+          RemoteMark()
           Spacer()
           IconButton(symbol: "globe", title: L10n.text("Language")) { store.sheet = .language }
           IconButton(symbol: "paintpalette", title: L10n.text("Appearance")) {
@@ -90,7 +90,7 @@ struct DevicesView: View {
                 } catch { self.error = error.localizedDescription }
               }
             }.disabled(finding)
-          }.lumaCard()
+          }.remoteCard()
         }
         Button {
           if let u = URL(string: UIApplication.openSettingsURLString) {

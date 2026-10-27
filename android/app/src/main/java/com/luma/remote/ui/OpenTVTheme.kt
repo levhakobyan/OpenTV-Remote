@@ -20,7 +20,7 @@ internal val Raised:Color @Composable get()=MaterialTheme.colorScheme.surfaceVar
 internal val Accent:Color @Composable get()=MaterialTheme.colorScheme.primary
 internal val Muted:Color @Composable get()=MaterialTheme.colorScheme.onSurfaceVariant
 
-@Composable internal fun LumaTheme(hex:String,content:@Composable ()->Unit) {
+@Composable internal fun OpenTVTheme(hex:String,content:@Composable ()->Unit) {
     val palette=remember(hex) { AccentPalette.from(hex) }
     val scheme=remember(palette) { darkColorScheme(
         primary=Color(palette.accent),onPrimary=Color(palette.background),background=Color(palette.background),onBackground=Color(palette.text),
@@ -31,7 +31,7 @@ internal val Muted:Color @Composable get()=MaterialTheme.colorScheme.onSurfaceVa
     MaterialTheme(colorScheme=scheme,typography=Typography(),content=content)
 }
 
-@Composable internal fun LumaMark(modifier:Modifier=Modifier) {
+@Composable internal fun RemoteMark(modifier:Modifier=Modifier) {
     val accent=Accent;val ink=Ink
     Canvas(modifier.aspectRatio(1f)) {
         val u=size.minDimension/24f

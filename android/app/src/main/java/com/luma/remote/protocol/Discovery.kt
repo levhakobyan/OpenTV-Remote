@@ -59,7 +59,7 @@ class Discovery(private val context: Context) {
     fun start() {
         stop(); val attempt=++generation; devices.value=emptyList(); issue.value=null; scanning.value=true
         try {
-            lock=(context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager).createMulticastLock("luma-discovery").apply { setReferenceCounted(false); acquire() }
+            lock=(context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager).createMulticastLock("opentv-discovery").apply { setReferenceCounted(false); acquire() }
             for(type in listOf("_androidtvremote2._tcp.")) {
             val listener=object:NsdManager.DiscoveryListener {
                 override fun onDiscoveryStarted(t:String) { }

@@ -4,7 +4,7 @@ import SwiftUI
 struct CanvasPreview: View {
   let canvas: RemoteCanvas
   var apps: [AppShortcut] = AppShortcut.catalog
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     Canvas { context, size in
       let unit = min(size.width / 6.4, size.height / (CGFloat(canvas.rows) + 0.4))
@@ -152,7 +152,7 @@ struct CanvasPreview: View {
 struct EditorItemPreview: View {
   let item: CanvasItem
   var app: AppShortcut? = nil
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     Group {
       if item.kind == .dpad {
@@ -186,7 +186,7 @@ struct EditorItemPreview: View {
   }
 }
 private struct PadIllustration: View {
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   var body: some View {
     GeometryReader { geometry in
       let side = min(geometry.size.width, geometry.size.height)

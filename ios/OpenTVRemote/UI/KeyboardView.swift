@@ -3,7 +3,7 @@ import UIKit
 
 struct KeyboardView: View {
   @Environment(RemoteStore.self) private var store
-  @Environment(\.luma) private var p
+  @Environment(\.remotePalette) private var p
   @Environment(\.scenePhase) private var scenePhase
   @State private var manual = IMETextValue(text: "", start: 0, end: 0)
   @State private var privateInput = true

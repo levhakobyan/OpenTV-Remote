@@ -61,7 +61,7 @@ class DownloadTests(unittest.TestCase):
         self.assertIn('href="https://github.com/owner/project/archive/refs/heads/main.zip"', page)
         self.assertIn('href="#iphone-guide"', page)
         self.assertIn('id="iphone-guide"', page)
-        self.assertIn("ios/LumaRemote.xcodeproj", page)
+        self.assertIn("ios/OpenTVRemote.xcodeproj", page)
         self.assertNotIn("{{", page)
         self.assertNotIn('href="' + APK_NAME, page)
         self.assertNotIn('.ipa"', page)

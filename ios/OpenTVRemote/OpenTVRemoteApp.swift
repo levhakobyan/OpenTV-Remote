@@ -1,6 +1,6 @@
 import SwiftUI
 
-@main struct LumaRemoteApp: App {
+@main struct OpenTVRemoteApp: App {
   @State private var store: RemoteStore
   init() {
     var defaults = UserDefaults.standard

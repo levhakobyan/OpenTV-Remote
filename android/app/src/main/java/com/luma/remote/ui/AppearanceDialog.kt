@@ -29,14 +29,14 @@ import com.luma.remote.ui.theme.*
     var draft by rememberSaveable { mutableStateOf(initial) }
     var custom by rememberSaveable { mutableStateOf(AccentChoice.entries.none { it.hex==initial }) }
     var picker by rememberSaveable { mutableStateOf(false) }
-    LumaTheme(draft) {
+    OpenTVTheme(draft) {
         AlertDialog(containerColor=Ink,onDismissRequest=onDismiss,title={Text(strings.getString(R.string.ui_appearance))},text={
             Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(16.dp)) {
                 Text(strings.getString(R.string.ui_your_color_stays_when_you_change_layouts),color=Muted,fontSize=13.sp)
                 // Visual sample only: this preview has no remote or transport handlers.
                 Surface(Modifier.fillMaxWidth(),color=Panel,shape=RoundedCornerShape(24.dp)) {
                     Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-                        Row(verticalAlignment=Alignment.CenterVertically) { LumaMark(Modifier.size(28.dp));Text(strings.getString(R.string.ui_your_remote),Modifier.weight(1f).padding(start=8.dp),color=MaterialTheme.colorScheme.onSurface);Icon(Icons.Outlined.PowerSettingsNew,null,tint=Accent) }
+                        Row(verticalAlignment=Alignment.CenterVertically) { RemoteMark(Modifier.size(28.dp));Text(strings.getString(R.string.ui_your_remote),Modifier.weight(1f).padding(start=8.dp),color=MaterialTheme.colorScheme.onSurface);Icon(Icons.Outlined.PowerSettingsNew,null,tint=Accent) }
                         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                             listOf(Icons.Outlined.KeyboardArrowLeft,Icons.Outlined.Check,Icons.Outlined.KeyboardArrowRight).forEachIndexed { index,icon ->
                                 Box(Modifier.weight(1f).height(56.dp).background(if(index==1)Accent else Raised,RoundedCornerShape(18.dp)),contentAlignment=Alignment.Center) { Icon(icon,null,tint=if(index==1)Ink else MaterialTheme.colorScheme.onSurface) }

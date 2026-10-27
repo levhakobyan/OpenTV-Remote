@@ -7,9 +7,9 @@ The matrix covers 7 capability profiles × 0/1/2 apps × both hands × 8 templat
 To export both actual runtimes, run from the repository root (use the repository's configured Java environment for Gradle):
 
 ```sh
-(cd android && LUMA_CANVAS_SNAPSHOT_OUTPUT=/private/tmp/luma-android-canvas.json ./gradlew :app:testDebugUnitTest --tests com.luma.remote.protocol.CanvasPresetsTest.builtInTemplatesMatchSharedCrossPlatformFixtures --rerun-tasks)
-CLANG_MODULE_CACHE_PATH=/private/tmp/luma-swift-module-cache SWIFTPM_MODULECACHE_OVERRIDE=/private/tmp/luma-swift-module-cache LUMA_CANVAS_SNAPSHOT_OUTPUT=/private/tmp/luma-ios-canvas.json swift test --disable-sandbox --package-path ios --scratch-path /private/tmp/luma-ios-core-build --filter LumaCoreTests.testBuiltInTemplatesMatchSharedCrossPlatformFixtures
-python3 tools/check_canvas_preset_parity.py --android /private/tmp/luma-android-canvas.json --ios /private/tmp/luma-ios-canvas.json
+(cd android && OPENTV_CANVAS_SNAPSHOT_OUTPUT=/private/tmp/opentv-android-canvas.json ./gradlew :app:testDebugUnitTest --tests com.luma.remote.protocol.CanvasPresetsTest.builtInTemplatesMatchSharedCrossPlatformFixtures --rerun-tasks)
+CLANG_MODULE_CACHE_PATH=/private/tmp/opentv-swift-module-cache SWIFTPM_MODULECACHE_OVERRIDE=/private/tmp/opentv-swift-module-cache OPENTV_CANVAS_SNAPSHOT_OUTPUT=/private/tmp/opentv-ios-canvas.json swift test --disable-sandbox --package-path ios --scratch-path /private/tmp/opentv-ios-core-build --filter OpenTVRemoteCoreTests.testBuiltInTemplatesMatchSharedCrossPlatformFixtures
+python3 tools/check_canvas_preset_parity.py --android /private/tmp/opentv-android-canvas.json --ios /private/tmp/opentv-ios-canvas.json
 ```
 
 `--disable-sandbox` allows SwiftPM to run inside an existing development sandbox; it is unnecessary outside that environment. Native tests export before comparing fixtures, so an intentional preset change may initially fail fixture assertions. Review both runtime outputs, then use the verifier's `--update` flag to accept a new shared fixture **only if both platforms match**. Rerun both native tests without failures afterward. Never update fixtures merely to hide an unintended regression. The verifier compares outputs and never contains a second layout algorithm.

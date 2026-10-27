@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000EEBB95636666F3A6D3277 /* OpenTVRemote/Protocols/RemoteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750E9A047AA73EA83AD3F0A /* OpenTVRemote/Protocols/RemoteProvider.swift */; };
+		021DD362E8135783351B6B79 /* OpenTVRemote/OpenTVRemoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EBF2653C54B5E1EC7D42A /* OpenTVRemote/OpenTVRemoteApp.swift */; };
+		0CC7F077D6314C47802A5E58 /* OpenTVRemote/UI/Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C020A46A3615D6E8A5545 /* OpenTVRemote/UI/Theme.swift */; };
+		1774CCF41B7019B70B75A425 /* UITests/RemoteFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DBD2DC88B43D50C587778D /* UITests/RemoteFlowTests.swift */; };
+		18E63EE6CB53BE45FD7574A4 /* Core/Wire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C3A466071A77458F95699 /* Core/Wire.swift */; };
+		18E80F7FC845E6F23357D6EC /* OpenTVRemote/Discovery/TVDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AE6092FABE8F8C5F8AC391 /* OpenTVRemote/Discovery/TVDiscovery.swift */; };
+		229AC61312F0696CA7487299 /* OpenTVRemote/UI/KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEF663EA89285C02511589 /* OpenTVRemote/UI/KeyboardView.swift */; };
+		25AA06A2A0031C5C9CCAF0B9 /* OpenTVRemote/State/RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1CC3B5831E975B794E7865 /* OpenTVRemote/State/RemoteStore.swift */; };
+		2E25D779992A94C12796C273 /* OpenTVRemote/Resources/en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2C435A0479A4B12856FF58A6 /* OpenTVRemote/Resources/en.lproj */; };
+		45BD04945EFA85FBD45F57CB /* OpenTVRemote/UI/RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5188BE690EEDF43BCF139B42 /* OpenTVRemote/UI/RootView.swift */; };
+		46F7482C4360F89CD3F1D0F8 /* Core/AccentPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236F1848B99BE605E1EF6BC /* Core/AccentPalette.swift */; };
+		4A67133260A94CBC16313574 /* OpenTVRemote/Protocols/TLSChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DF65CE7CF6E5FDBFB2685 /* OpenTVRemote/Protocols/TLSChannel.swift */; };
+		4C170F5FF69741B32126E7E1 /* OpenTVRemote/UI/Editor/CanvasPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EAEFF3DF54539CE25210A /* OpenTVRemote/UI/Editor/CanvasPreview.swift */; };
+		62BAFA48150F093A3F2FE92F /* OpenTVRemote/UI/AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42CBAADFC3C216BB2BAD407 /* OpenTVRemote/UI/AppsView.swift */; };
+		67D2DA95E99E32C094D09E62 /* OpenTVRemote/Resources/ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F95CA865946E1EC2DCB16429 /* OpenTVRemote/Resources/ru.lproj */; };
+		696DD5DC0A39076346CB8E68 /* Core/Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982C948D419702777A2DB64 /* Core/Localization.swift */; };
+		6E27D87BE2D4984B77CDD02E /* OpenTVRemote/Protocols/AndroidTVProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C795712B07A22C945795A /* OpenTVRemote/Protocols/AndroidTVProvider.swift */; };
+		79440E8BBEDF87858028F32A /* Core/RemoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D138E336444BFDDBAA2A03E7 /* Core/RemoteModels.swift */; };
+		7D86E084F0F51806F9A80716 /* OpenTVRemote/UI/Editor/CanvasEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C36E092AB94C084480765 /* OpenTVRemote/UI/Editor/CanvasEditor.swift */; };
+		999FF37E9C5A0FFB78E1CDE2 /* OpenTVRemote/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF729FFE074CAEE622C0292 /* OpenTVRemote/Assets.xcassets */; };
+		A0E001000000000000000001 /* Core/AndroidIME.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E001000000000000000002 /* Core/AndroidIME.swift */; };
+		A5914F8EE2C1207FE06092CD /* OpenTVRemote/UI/DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A130D4176DF94D7D904ED /* OpenTVRemote/UI/DevicesView.swift */; };
+		AAE28FB25AC6E81C63D9BB43 /* OpenTVRemote/UI/RemoteControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81B919067F34D32B9DDC52 /* OpenTVRemote/UI/RemoteControls.swift */; };
+		B14A8354BF18ECEBADE93920 /* OpenTVRemote/PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A4CC6BC01A927E2A78FD3BEC /* OpenTVRemote/PrivacyInfo.xcprivacy */; };
+		B515B5B8217D3F60502930F8 /* Core/SamsungCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D87CCC7378879B1AA735DA0 /* Core/SamsungCodec.swift */; };
+		B542F1ED08D91F18B758D1DF /* Core/RemoteCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464A56FD69B022DF2C90C5D /* Core/RemoteCanvas.swift */; };
+		BA80920869B90BAA4AE110D2 /* Core/EncodingRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50636C40B47874A327ED83D0 /* Core/EncodingRules.swift */; };
+		C5EA63C8CADB59AE48CAF972 /* OpenTVRemote/Protocols/WebOSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D82F88E9E1A6FD71B4264A /* OpenTVRemote/Protocols/WebOSProvider.swift */; };
+		CE896390E84C4D672C003FB4 /* OpenTVRemote/UI/AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B86CCF3E19AA458EEC167 /* OpenTVRemote/UI/AppearanceView.swift */; };
+		CFE0D12F3D98105A7599E811 /* OpenTVRemote/Protocols/TVSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53EB9BC04A99C293DBC2B98 /* OpenTVRemote/Protocols/TVSession.swift */; };
+		D4D82E4277C1CD04A19BCD8B /* OpenTVRemote/UI/Editor/PresetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D6005EDBD37199846F10E /* OpenTVRemote/UI/Editor/PresetsView.swift */; };
+		E01142E538023C99188311DD /* OpenTVRemote/UI/ShortcutIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118155DEA436D4483E549099 /* OpenTVRemote/UI/ShortcutIconView.swift */; };
+		EDF191825BE5189F4A708E32 /* OpenTVRemote/UI/MotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17442493EF6E074FD2F1579 /* OpenTVRemote/UI/MotionView.swift */; };
+		F62067C4207F948EAC276F7E /* OpenTVRemote/Data/SecureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB388026A3B5237480C667E /* OpenTVRemote/Data/SecureStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		25A640B699F944DC77F1F1FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 244210E48437B6556980A702 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34A04005BCAF206EEC990BD9;
+			remoteInfo = OpenTVRemote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		095F8DC4F5DF9AFE82615219 /* OpenTVRemote/Multicast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenTVRemote/Multicast.entitlements; sourceTree = SOURCE_ROOT; };
+		118155DEA436D4483E549099 /* OpenTVRemote/UI/ShortcutIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/ShortcutIconView.swift; sourceTree = SOURCE_ROOT; };
+		14DBD2DC88B43D50C587778D /* UITests/RemoteFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests/RemoteFlowTests.swift; sourceTree = SOURCE_ROOT; };
+		176A130D4176DF94D7D904ED /* OpenTVRemote/UI/DevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/DevicesView.swift; sourceTree = SOURCE_ROOT; };
+		1AB388026A3B5237480C667E /* OpenTVRemote/Data/SecureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Data/SecureStore.swift; sourceTree = SOURCE_ROOT; };
+		1D87CCC7378879B1AA735DA0 /* Core/SamsungCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/SamsungCodec.swift; sourceTree = SOURCE_ROOT; };
+		2C435A0479A4B12856FF58A6 /* OpenTVRemote/Resources/en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenTVRemote/Resources/en.lproj; sourceTree = SOURCE_ROOT; };
+		30AEF663EA89285C02511589 /* OpenTVRemote/UI/KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/KeyboardView.swift; sourceTree = SOURCE_ROOT; };
+		3B4C020A46A3615D6E8A5545 /* OpenTVRemote/UI/Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/Theme.swift; sourceTree = SOURCE_ROOT; };
+		3E1CC3B5831E975B794E7865 /* OpenTVRemote/State/RemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/State/RemoteStore.swift; sourceTree = SOURCE_ROOT; };
+		41AE6092FABE8F8C5F8AC391 /* OpenTVRemote/Discovery/TVDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Discovery/TVDiscovery.swift; sourceTree = SOURCE_ROOT; };
+		50636C40B47874A327ED83D0 /* Core/EncodingRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/EncodingRules.swift; sourceTree = SOURCE_ROOT; };
+		5188BE690EEDF43BCF139B42 /* OpenTVRemote/UI/RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/RootView.swift; sourceTree = SOURCE_ROOT; };
+		5F7A34071E3DF8740A45D240 /* OpenTVRemote/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OpenTVRemote/Info.plist; sourceTree = SOURCE_ROOT; };
+		6464A56FD69B022DF2C90C5D /* Core/RemoteCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/RemoteCanvas.swift; sourceTree = SOURCE_ROOT; };
+		6750E9A047AA73EA83AD3F0A /* OpenTVRemote/Protocols/RemoteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Protocols/RemoteProvider.swift; sourceTree = SOURCE_ROOT; };
+		6A2EAEFF3DF54539CE25210A /* OpenTVRemote/UI/Editor/CanvasPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/Editor/CanvasPreview.swift; sourceTree = SOURCE_ROOT; };
+		7982C948D419702777A2DB64 /* Core/Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Localization.swift; sourceTree = SOURCE_ROOT; };
+		7A81B919067F34D32B9DDC52 /* OpenTVRemote/UI/RemoteControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/RemoteControls.swift; sourceTree = SOURCE_ROOT; };
+		8BF729FFE074CAEE622C0292 /* OpenTVRemote/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = OpenTVRemote/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		A0E001000000000000000002 /* Core/AndroidIME.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/AndroidIME.swift; sourceTree = SOURCE_ROOT; };
+		A4CC6BC01A927E2A78FD3BEC /* OpenTVRemote/PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OpenTVRemote/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
+		A53EB9BC04A99C293DBC2B98 /* OpenTVRemote/Protocols/TVSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Protocols/TVSession.swift; sourceTree = SOURCE_ROOT; };
+		A72C3A466071A77458F95699 /* Core/Wire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Wire.swift; sourceTree = SOURCE_ROOT; };
+		A7D82F88E9E1A6FD71B4264A /* OpenTVRemote/Protocols/WebOSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Protocols/WebOSProvider.swift; sourceTree = SOURCE_ROOT; };
+		A8792157CB4F27FB949C035F /* OpenTVRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = OpenTVRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA8D6005EDBD37199846F10E /* OpenTVRemote/UI/Editor/PresetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/Editor/PresetsView.swift; sourceTree = SOURCE_ROOT; };
+		AF1C36E092AB94C084480765 /* OpenTVRemote/UI/Editor/CanvasEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/Editor/CanvasEditor.swift; sourceTree = SOURCE_ROOT; };
+		B17442493EF6E074FD2F1579 /* OpenTVRemote/UI/MotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/MotionView.swift; sourceTree = SOURCE_ROOT; };
+		D138E336444BFDDBAA2A03E7 /* Core/RemoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/RemoteModels.swift; sourceTree = SOURCE_ROOT; };
+		D236F1848B99BE605E1EF6BC /* Core/AccentPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/AccentPalette.swift; sourceTree = SOURCE_ROOT; };
+		D46DF65CE7CF6E5FDBFB2685 /* OpenTVRemote/Protocols/TLSChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Protocols/TLSChannel.swift; sourceTree = SOURCE_ROOT; };
+		D61EBF2653C54B5E1EC7D42A /* OpenTVRemote/OpenTVRemoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/OpenTVRemoteApp.swift; sourceTree = SOURCE_ROOT; };
+		DD3B86CCF3E19AA458EEC167 /* OpenTVRemote/UI/AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/AppearanceView.swift; sourceTree = SOURCE_ROOT; };
+		E7F08BCC397888750F5CB9BD /* OpenTVRemoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = OpenTVRemoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F42CBAADFC3C216BB2BAD407 /* OpenTVRemote/UI/AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/UI/AppsView.swift; sourceTree = SOURCE_ROOT; };
+		F46C795712B07A22C945795A /* OpenTVRemote/Protocols/AndroidTVProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTVRemote/Protocols/AndroidTVProvider.swift; sourceTree = SOURCE_ROOT; };
+		F95CA865946E1EC2DCB16429 /* OpenTVRemote/Resources/ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenTVRemote/Resources/ru.lproj; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2AA269EB967A8853A258BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A3E27B8CA818264D75C8D81 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8792157CB4F27FB949C035F /* OpenTVRemote.app */,
+				E7F08BCC397888750F5CB9BD /* OpenTVRemoteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D2CE69F50F5CF1BA3A6DB3E /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				41AE6092FABE8F8C5F8AC391 /* OpenTVRemote/Discovery/TVDiscovery.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		0D6E4079E36703EBD37C0072 = {
+			isa = PBXGroup;
+			children = (
+				57694A8D2AB0704B8E089718 /* Core */,
+				CC53423214D2650EA6815FD3 /* OpenTVRemote */,
+				255B8AB2F91CEDDBC620FFA4 /* UITests */,
+				0A3E27B8CA818264D75C8D81 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		255B8AB2F91CEDDBC620FFA4 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				14DBD2DC88B43D50C587778D /* UITests/RemoteFlowTests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		57694A8D2AB0704B8E089718 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D236F1848B99BE605E1EF6BC /* Core/AccentPalette.swift */,
+				50636C40B47874A327ED83D0 /* Core/EncodingRules.swift */,
+				6464A56FD69B022DF2C90C5D /* Core/RemoteCanvas.swift */,
+				D138E336444BFDDBAA2A03E7 /* Core/RemoteModels.swift */,
+				7982C948D419702777A2DB64 /* Core/Localization.swift */,
+				1D87CCC7378879B1AA735DA0 /* Core/SamsungCodec.swift */,
+				A72C3A466071A77458F95699 /* Core/Wire.swift */,
+				A0E001000000000000000002 /* Core/AndroidIME.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7071E31FCB5CACE974A72BD1 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C36E092AB94C084480765 /* OpenTVRemote/UI/Editor/CanvasEditor.swift */,
+				6A2EAEFF3DF54539CE25210A /* OpenTVRemote/UI/Editor/CanvasPreview.swift */,
+				AA8D6005EDBD37199846F10E /* OpenTVRemote/UI/Editor/PresetsView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		9216AE3E7EBD38198419DB90 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7071E31FCB5CACE974A72BD1 /* Editor */,
+				DD3B86CCF3E19AA458EEC167 /* OpenTVRemote/UI/AppearanceView.swift */,
+				F42CBAADFC3C216BB2BAD407 /* OpenTVRemote/UI/AppsView.swift */,
+				176A130D4176DF94D7D904ED /* OpenTVRemote/UI/DevicesView.swift */,
+				30AEF663EA89285C02511589 /* OpenTVRemote/UI/KeyboardView.swift */,
+				B17442493EF6E074FD2F1579 /* OpenTVRemote/UI/MotionView.swift */,
+				7A81B919067F34D32B9DDC52 /* OpenTVRemote/UI/RemoteControls.swift */,
+				5188BE690EEDF43BCF139B42 /* OpenTVRemote/UI/RootView.swift */,
+				118155DEA436D4483E549099 /* OpenTVRemote/UI/ShortcutIconView.swift */,
+				3B4C020A46A3615D6E8A5545 /* OpenTVRemote/UI/Theme.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		959CCEFDED8811011C2D8246 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F46C795712B07A22C945795A /* OpenTVRemote/Protocols/AndroidTVProvider.swift */,
+				6750E9A047AA73EA83AD3F0A /* OpenTVRemote/Protocols/RemoteProvider.swift */,
+				D46DF65CE7CF6E5FDBFB2685 /* OpenTVRemote/Protocols/TLSChannel.swift */,
+				A53EB9BC04A99C293DBC2B98 /* OpenTVRemote/Protocols/TVSession.swift */,
+				A7D82F88E9E1A6FD71B4264A /* OpenTVRemote/Protocols/WebOSProvider.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CC53423214D2650EA6815FD3 /* OpenTVRemote */ = {
+			isa = PBXGroup;
+			children = (
+				EA59BEF72A7C101C93616711 /* Data */,
+				0D2CE69F50F5CF1BA3A6DB3E /* Discovery */,
+				959CCEFDED8811011C2D8246 /* Protocols */,
+				E7812D351A454BE509A02F9F /* State */,
+				9216AE3E7EBD38198419DB90 /* UI */,
+				8BF729FFE074CAEE622C0292 /* OpenTVRemote/Assets.xcassets */,
+				5F7A34071E3DF8740A45D240 /* OpenTVRemote/Info.plist */,
+				D61EBF2653C54B5E1EC7D42A /* OpenTVRemote/OpenTVRemoteApp.swift */,
+				095F8DC4F5DF9AFE82615219 /* OpenTVRemote/Multicast.entitlements */,
+				A4CC6BC01A927E2A78FD3BEC /* OpenTVRemote/PrivacyInfo.xcprivacy */,
+				F95CA865946E1EC2DCB16429 /* OpenTVRemote/Resources/ru.lproj */,
+				2C435A0479A4B12856FF58A6 /* OpenTVRemote/Resources/en.lproj */,
+			);
+			path = OpenTVRemote;
+			sourceTree = "<group>";
+		};
+		E7812D351A454BE509A02F9F /* State */ = {
+			isa = PBXGroup;
+			children = (
+				3E1CC3B5831E975B794E7865 /* OpenTVRemote/State/RemoteStore.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		EA59BEF72A7C101C93616711 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1AB388026A3B5237480C667E /* OpenTVRemote/Data/SecureStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34A04005BCAF206EEC990BD9 /* OpenTVRemote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA6C49DB5A7137BA75102BE3 /* Build configuration list for PBXNativeTarget "OpenTVRemote" */;
+			buildPhases = (
+				878A52FC5FF6A57D50B7B870 /* Sources */,
+				E2AA269EB967A8853A258BFA /* Frameworks */,
+				41D311A605520FC7B8B9A980 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenTVRemote;
+			packageProductDependencies = (
+			);
+			productName = OpenTVRemote;
+			productReference = A8792157CB4F27FB949C035F /* OpenTVRemote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5B4A42C1A9B11F842B19C64 /* OpenTVRemoteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0C77B35D361051DBB75B2C6 /* Build configuration list for PBXNativeTarget "OpenTVRemoteUITests" */;
+			buildPhases = (
+				798B65A4B63A4D08FDD4C755 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25E506C77AE10A94A633D071 /* PBXTargetDependency */,
+			);
+			name = OpenTVRemoteUITests;
+			productName = OpenTVRemoteUITests;
+			productReference = E7F08BCC397888750F5CB9BD /* OpenTVRemoteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		244210E48437B6556980A702 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					E5B4A42C1A9B11F842B19C64 = {
+						TestTargetID = 34A04005BCAF206EEC990BD9;
+					};
+				};
+			};
+			buildConfigurationList = 187B327489003FCA55B00C62 /* Build configuration list for PBXProject "OpenTVRemote" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ru,
+				Base,
+			);
+			mainGroup = 0D6E4079E36703EBD37C0072;
+			packageReferences = (
+			);
+			productRefGroup = 0A3E27B8CA818264D75C8D81 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34A04005BCAF206EEC990BD9 /* OpenTVRemote */,
+				E5B4A42C1A9B11F842B19C64 /* OpenTVRemoteUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41D311A605520FC7B8B9A980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B14A8354BF18ECEBADE93920 /* OpenTVRemote/PrivacyInfo.xcprivacy in Resources */,
+				67D2DA95E99E32C094D09E62 /* OpenTVRemote/Resources/ru.lproj in Resources */,
+				2E25D779992A94C12796C273 /* OpenTVRemote/Resources/en.lproj in Resources */,
+				999FF37E9C5A0FFB78E1CDE2 /* OpenTVRemote/Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		798B65A4B63A4D08FDD4C755 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1774CCF41B7019B70B75A425 /* UITests/RemoteFlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		878A52FC5FF6A57D50B7B870 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46F7482C4360F89CD3F1D0F8 /* Core/AccentPalette.swift in Sources */,
+				BA80920869B90BAA4AE110D2 /* Core/EncodingRules.swift in Sources */,
+				B542F1ED08D91F18B758D1DF /* Core/RemoteCanvas.swift in Sources */,
+				79440E8BBEDF87858028F32A /* Core/RemoteModels.swift in Sources */,
+				696DD5DC0A39076346CB8E68 /* Core/Localization.swift in Sources */,
+				B515B5B8217D3F60502930F8 /* Core/SamsungCodec.swift in Sources */,
+				18E63EE6CB53BE45FD7574A4 /* Core/Wire.swift in Sources */,
+				A0E001000000000000000001 /* Core/AndroidIME.swift in Sources */,
+				F62067C4207F948EAC276F7E /* OpenTVRemote/Data/SecureStore.swift in Sources */,
+				18E80F7FC845E6F23357D6EC /* OpenTVRemote/Discovery/TVDiscovery.swift in Sources */,
+				021DD362E8135783351B6B79 /* OpenTVRemote/OpenTVRemoteApp.swift in Sources */,
+				6E27D87BE2D4984B77CDD02E /* OpenTVRemote/Protocols/AndroidTVProvider.swift in Sources */,
+				000EEBB95636666F3A6D3277 /* OpenTVRemote/Protocols/RemoteProvider.swift in Sources */,
+				4A67133260A94CBC16313574 /* OpenTVRemote/Protocols/TLSChannel.swift in Sources */,
+				CFE0D12F3D98105A7599E811 /* OpenTVRemote/Protocols/TVSession.swift in Sources */,
+				C5EA63C8CADB59AE48CAF972 /* OpenTVRemote/Protocols/WebOSProvider.swift in Sources */,
+				25AA06A2A0031C5C9CCAF0B9 /* OpenTVRemote/State/RemoteStore.swift in Sources */,
+				CE896390E84C4D672C003FB4 /* OpenTVRemote/UI/AppearanceView.swift in Sources */,
+				62BAFA48150F093A3F2FE92F /* OpenTVRemote/UI/AppsView.swift in Sources */,
+				A5914F8EE2C1207FE06092CD /* OpenTVRemote/UI/DevicesView.swift in Sources */,
+				7D86E084F0F51806F9A80716 /* OpenTVRemote/UI/Editor/CanvasEditor.swift in Sources */,
+				4C170F5FF69741B32126E7E1 /* OpenTVRemote/UI/Editor/CanvasPreview.swift in Sources */,
+				D4D82E4277C1CD04A19BCD8B /* OpenTVRemote/UI/Editor/PresetsView.swift in Sources */,
+				229AC61312F0696CA7487299 /* OpenTVRemote/UI/KeyboardView.swift in Sources */,
+				EDF191825BE5189F4A708E32 /* OpenTVRemote/UI/MotionView.swift in Sources */,
+				AAE28FB25AC6E81C63D9BB43 /* OpenTVRemote/UI/RemoteControls.swift in Sources */,
+				45BD04945EFA85FBD45F57CB /* OpenTVRemote/UI/RootView.swift in Sources */,
+				E01142E538023C99188311DD /* OpenTVRemote/UI/ShortcutIconView.swift in Sources */,
+				0CC7F077D6314C47802A5E58 /* OpenTVRemote/UI/Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		25E506C77AE10A94A633D071 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34A04005BCAF206EEC990BD9 /* OpenTVRemote */;
+			targetProxy = 25A640B699F944DC77F1F1FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0B0C687DF8B6B8DC790B519C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		28A722929B94EC37AFB5BA4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luma.remote.ios.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenTVRemote;
+			};
+			name = Debug;
+		};
+		6C7EFF6369083C8E1F2B1994 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B2J8ZAA59Q;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenTVRemote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.luma.remote.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73EBF6644258C120893E685D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DD75E2CB1C510A828AC72D96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B2J8ZAA59Q;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenTVRemote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.luma.remote.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F318EF763F11578FF40814E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luma.remote.ios.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenTVRemote;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		187B327489003FCA55B00C62 /* Build configuration list for PBXProject "OpenTVRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73EBF6644258C120893E685D /* Debug */,
+				0B0C687DF8B6B8DC790B519C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0C77B35D361051DBB75B2C6 /* Build configuration list for PBXNativeTarget "OpenTVRemoteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28A722929B94EC37AFB5BA4F /* Debug */,
+				F318EF763F11578FF40814E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA6C49DB5A7137BA75102BE3 /* Build configuration list for PBXNativeTarget "OpenTVRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C7EFF6369083C8E1F2B1994 /* Debug */,
+				DD75E2CB1C510A828AC72D96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 244210E48437B6556980A702 /* Project object */;
+}
