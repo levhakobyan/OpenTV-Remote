@@ -323,3 +323,47 @@ macOS Vision OCR completed across67 previously current screenshots and the publi
 Android unit behavior was explicitly rerun with `:app:testDebugUnitTest --rerun`, followed by assembly/lint:158tests,0failures/errors/skips; BUILD SUCCESSFUL. Final renamed iOS QA flow again passed45Core tests, signed generic Simulator and unsigned generic device builds, both bundle audits and2native UI tests with TEST SUCCEEDED. Native result: `/private/tmp/opentv-ios-sim/Logs/Test/Test-OpenTVRemote-2026.10.28_03-10-49-+0400.xcresult`. The refreshed Simulator archive SHA-256 is `df81ccfb5c89c1cac362eb48311a9046f8d2e505af75024c16c76840f96b74f6`. The Android0.9.1 shipping APK was unchanged by this audit.
 
 The new branding gate passed across164 source/document files and includes ownership-scoped exceptions for upgrade identities, retired-artifact cleanup and dated history. Six guard tests verify rejection of stale UI/project names and safe treatment of these exceptions. All34Python tests (branding, downloads and fixture contracts), Python syntax checks, shell syntax and diff whitespace checks passed. Pages now runs the gate and all tool tests before publication. Existing physical-TV qualification gaps remain: this audit does not newly validate YouTube Search/TV Bro, LG/Samsung model coverage or Bluetooth HID behavior on hardware.
+
+## Android legacy-compatibility verification (API 23)
+
+Branch: `android/min-sdk-23`. Goal: install and run the same app on Android 6.0
+without changing targetSdk (34), compileSdk (34), AGP (8.7.3), Kotlin (2.0.21),
+or the Compose BOM (2024.12.01).
+
+### Static and unit evidence
+
+- `minSdk` changed from 28 to 23 in `android/app/build.gradle.kts`.
+- `aapt dump badging android/app/build/outputs/apk/debug/app-debug.apk` reports
+  `sdkVersion:'23'` and `targetSdkVersion:'34'`.
+- `./android/gradlew -p android assembleDebug testDebugUnitTest lintDebug`
+  completed successfully: 158 unit tests passed, zero failures, lintDebug passed
+  with zero errors.
+- `lintDebug` at minSdk 23 found and fixed four additional API-level issues:
+  `Configuration.setLocales` (24), `AtomicLong.accumulateAndGet` (24),
+  `java.util.Base64` (26), and `registerDefaultNetworkCallback` (24).
+- Bluetooth HID APIs remain isolated in `BluetoothHidProvider`, annotated
+  `@RequiresApi(Build.VERSION_CODES.P)`, and are only loaded through a guarded
+  façade. `OpenTVApp` renders the Bluetooth entry point only on API 28+.
+- The Base64 replacement was verified against `java.util.Base64.getEncoder()`
+  for ASCII, boundary lengths, Unicode, and control bytes; `clientName()`
+  produces `T3BlblRWLVJlbW90ZQ==`.
+
+### Runtime status
+
+An API 23 emulator could not be booted on this host: the bundled Android
+Emulator 37.2.13.0 segfaulted while starting both the Google APIs and default
+Android 6.0 x86_64 system images. Therefore the following remain to be
+verified on physical API 23 hardware or a working emulator:
+
+- Cold launch and Compose rendering.
+- Per-app language switching through AppCompat.
+- Android TV pairing and reconnection, including `Vault` RSA identity
+  generation, PKCS#12 store/load, and AndroidKeyStore AES-GCM encryption.
+- Samsung and LG fixture pairing and text entry.
+- Network change handling through the Wi-Fi-only `registerNetworkCallback`
+  path.
+- Absence of the Bluetooth remote entry on API 23.
+
+API 28 and 34 builds were not re-run against hardware in this session; the
+HID refactor keeps the implementation byte-for-byte behind a façade, and the
+full unit/lint suite passed at minSdk 23.

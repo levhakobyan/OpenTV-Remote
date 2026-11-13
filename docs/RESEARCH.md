@@ -11,6 +11,7 @@ Use Kotlin, Compose and provider-specific capability contracts. Prioritize Andro
 
 **D** = documented by platform/vendor; **P** = implemented or technically plausible but physical hardware verification required; **X** = unavailable, restricted, or not implemented. No physical TV was connected during development. “Documented” does not mean this app has passed vendor certification.
 
+Android app minimum supported OS is Android 6.0 (API 23) as of the legacy-compatibility branch; Bluetooth HID remains Android 9+ (API 28).
 | Platform | Discovery / authentication | Remote, wake and controls | Media / status in this build |
 |---|---|---|---|
 | Android TV / Google TV | **P** mDNS `_androidtvremote2._tcp`; TLS 6467, six hex characters, certificate identity; TLS 6466 control. | **P** D-pad, OK, Back, Home, playback keys. Feature-mask negotiation gates text, volume and power. A key accepted by the transport can still be ignored by the foreground app. Deep standby cannot be assumed to wake. | Cast **D** only when an actual Cast receiver exists. Wi-Fi provider implemented; physical testing pending. [Google user workflow](https://support.google.com/androidtv/answer/6122465), [upstream Remote v2 implementation and schemas](https://github.com/tronikos/androidtvremote2), [original Google pairing protocol](https://android.googlesource.com/platform/external/google-tv-pairing-protocol/). |
