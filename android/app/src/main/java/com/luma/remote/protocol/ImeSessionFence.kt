@@ -9,7 +9,11 @@ internal class ImeSessionFence {
     private val session=AtomicLong(Long.MIN_VALUE)
     fun nextConnection():Long=connection.incrementAndGet()
     fun currentConnection():Long=connection.get()
-    fun invalidate(session:Long) {invalidThrough.accumulateAndGet(session,::maxOf)}
+    fun invalidate(session:Long) {
+        // AtomicLong.accumulateAndGet is API 24; keep a lock-free max on API 23.
+        var current=invalidThrough.get()
+        while(session>current && !invalidThrough.compareAndSet(current,session)) current=invalidThrough.get()
+    }
     fun noteSession(session:Long) {this.session.set(session)}
     fun allows(connection:Long,session:Long)=this.connection.get()==connection && this.session.get()==session && session>invalidThrough.get()
 }

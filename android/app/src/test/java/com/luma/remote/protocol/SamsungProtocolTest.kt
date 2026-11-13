@@ -31,6 +31,14 @@ class SamsungProtocolTest {
         assertEquals("custom.remote.textReceived",JSONObject(packets[0]).getJSONObject("params").getString("event"))
         val p=JSONObject(packets[1]).getJSONObject("params");assertEquals("SendInputString",p.getString("TypeOfRemote"))
         assertEquals(text,String(Base64.getDecoder().decode(p.getString("Cmd")),Charsets.UTF_8))
+        // Standard Base64 must match the JDK encoder byte-for-byte, including padding.
+        assertEquals("T3BlblRWLVJlbW90ZQ==", SamsungProtocol.clientName())
+        for (sample in listOf("a", "ab", "abc", "Բարեւ 🙂", "\u0001\u00ff")) {
+            val packets = SamsungProtocol.text(sample)
+            val produced = JSONObject(packets[1]).getJSONObject("params").getString("Cmd")
+            val expected = Base64.getEncoder().encodeToString(sample.toByteArray(Charsets.UTF_8))
+            assertEquals(expected, produced)
+        }
         assertThrows(IllegalArgumentException::class.java) { SamsungProtocol.text("x".repeat(1001)) }
         assertThrows(IllegalArgumentException::class.java) { SamsungProtocol.text("a\u0000b") }
         assertNull(SamsungProtocol.approvalToken(JSONObject().put("token",JSONObject.NULL)))

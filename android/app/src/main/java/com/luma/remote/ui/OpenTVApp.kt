@@ -117,6 +117,7 @@ import com.luma.remote.protocol.*
     val context=LocalContext.current
     val permissions=rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { grants -> if(grants.isNotEmpty() && grants.values.all { it }) { bluetooth=true; btDevices=runCatching { vm.bonded() }.getOrDefault(emptyList()) } else vm.notice.value=strings.getString(R.string.ui_bluetooth_permission_was_denied_you_can_still_connect_over_wi_fi) }
     fun bluetoothOpen() {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.P) { vm.notice.value=strings.getString(R.string.status_bluetooth_hid_is_unavailable_on_this_phone_use_wi_fi_instead); return }
         if(Build.VERSION.SDK_INT>=31 && (ContextCompat.checkSelfPermission(context,Manifest.permission.BLUETOOTH_CONNECT)!=PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context,Manifest.permission.BLUETOOTH_ADVERTISE)!=PackageManager.PERMISSION_GRANTED))permissions.launch(arrayOf(Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_ADVERTISE))
         else { bluetooth=true; btDevices=runCatching { vm.bonded() }.getOrDefault(emptyList()) }
     }
@@ -133,9 +134,11 @@ import com.luma.remote.protocol.*
             Text(if(scanning)strings.getString(R.string.ui_keep_your_tv_on) else strings.getString(R.string.ui_check_that_your_tv_is_on_the_same_wi_fi),color=Muted,fontSize=14.sp,lineHeight=21.sp)
         } } else nearby.forEach { tv -> DeviceCard(tv,onClick={select(tv)}) }
         issue?.let { Text(it,color=MaterialTheme.colorScheme.error,fontSize=14.sp) }
-        HorizontalDivider(color=Raised)
-        Text(strings.getString(R.string.ui_other_connections),fontSize=16.sp,fontWeight=FontWeight.Medium)
-        OutlinedButton(onClick={bluetoothOpen()},modifier=Modifier.fillMaxWidth().heightIn(min=54.dp),shape=RoundedCornerShape(16.dp)) { Icon(Icons.Outlined.Bluetooth,null); Spacer(Modifier.width(12.dp)); Text(strings.getString(R.string.ui_bluetooth_remote)) }
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.P) {
+            HorizontalDivider(color=Raised)
+            Text(strings.getString(R.string.ui_other_connections),fontSize=16.sp,fontWeight=FontWeight.Medium)
+            OutlinedButton(onClick={bluetoothOpen()},modifier=Modifier.fillMaxWidth().heightIn(min=54.dp),shape=RoundedCornerShape(16.dp)) { Icon(Icons.Outlined.Bluetooth,null); Spacer(Modifier.width(12.dp)); Text(strings.getString(R.string.ui_bluetooth_remote)) }
+        }
         TextButton(onClick={manual=true},modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) { Text(strings.getString(R.string.ui_connect_by_ip)); Spacer(Modifier.width(8.dp)); Icon(Icons.Outlined.ArrowForward,null,Modifier.size(18.dp)) }
     }
     consent?.let { tv -> AlertDialog(containerColor=Panel,onDismissRequest={consent=null},title={Text(strings.getString(R.string.ui_connect_to_1_s, tv.name))},text={Text(strings.getString(R.string.ui_this_lg_provider_uses_legacy_unencrypted_local_port_3000_use_a_tr))},confirmButton={TextButton(onClick={consent=null;vm.connect(tv)}) { Text(strings.getString(R.string.ui_connect_on_trusted_wi_fi)) }},dismissButton={TextButton(onClick={consent=null}) { Text(strings.getString(R.string.ui_cancel)) }}) }
