@@ -1,7 +1,7 @@
 package com.luma.remote.protocol
 
 import org.json.JSONObject
-import java.util.Base64
+import okio.ByteString.Companion.encodeUtf8
 
 /** Local Tizen WebSocket protocol. Transport approval does not prove every key works in every TV app. */
 internal object SamsungProtocol {
@@ -20,7 +20,7 @@ internal object SamsungProtocol {
     fun text(value:String):List<String> {
         require(value.length in 1..1000 && value.none { it=='\u0000' })
         val prepare=JSONObject().put("method","ms.channel.emit").put("params",JSONObject().put("event","custom.remote.textReceived").put("to","broadcast"))
-        val input=JSONObject().put("method","ms.remote.control").put("params",JSONObject().put("Cmd",Base64.getEncoder().encodeToString(value.toByteArray(Charsets.UTF_8))).put("DataOfCmd","base64").put("TypeOfRemote","SendInputString"))
+        val input=JSONObject().put("method","ms.remote.control").put("params",JSONObject().put("Cmd",value.encodeUtf8().base64()).put("DataOfCmd","base64").put("TypeOfRemote","SendInputString"))
         return listOf(prepare.toString(),input.toString())
     }
     fun token(value:String?)=value?.takeIf { it.length in 1..1024 && it.all { c -> c.code in 33..126 } }
@@ -30,7 +30,7 @@ internal object SamsungProtocol {
         require(raw is String || raw is Number)
         return token(raw.toString()) ?: error("Invalid approval token")
     }
-    fun clientName()=Base64.getEncoder().encodeToString("OpenTV-Remote".toByteArray(Charsets.UTF_8))
+    fun clientName()="OpenTV-Remote".encodeUtf8().base64()
     fun info(raw:String):SamsungInfo {
         require(raw.length<=65536)
         val o=JSONObject(raw);val device=o.getJSONObject("device")
