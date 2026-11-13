@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
  * Keeping them in a separate class that is loaded only on those versions
  * prevents class-verification failures on Android 6-8.
  */
-@SuppressLint("MissingPermission")
+@SuppressLint("MissingPermission", "NewApi")
 class BluetoothProvider(private val context: Context, private val mouse: Boolean = true) : RemoteProvider {
     private val impl: BluetoothHidProvider? =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) BluetoothHidProvider(context, mouse) else null
