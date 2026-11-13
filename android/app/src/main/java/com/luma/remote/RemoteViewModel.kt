@@ -2,6 +2,7 @@ package com.luma.remote
 
 import android.app.Application
 import android.net.*
+import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.luma.remote.data.Vault
@@ -50,7 +51,9 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
     var bluetoothMouse:Boolean
         get()=ui.getBoolean("bluetooth-mouse",true)
         set(value) { ui.edit().putBoolean("bluetooth-mouse",value).apply() }
+    fun bluetoothSupported()=Build.VERSION.SDK_INT>=Build.VERSION_CODES.P
     fun prepareBluetooth() {
+        if(!bluetoothSupported()) { bluetoothSetup.value=RemoteState(Phase.ERROR,"Bluetooth HID requires Android 9 or newer. Use Wi-Fi instead.",messageRes=R.string.status_bluetooth_hid_is_unavailable_on_this_phone_use_wi_fi_instead); return }
         endBluetoothSetup()
         val p=BluetoothProvider(getApplication(),bluetoothMouse);setupProvider=p
         setupObservation=viewModelScope.launch { p.state.collect { bluetoothSetup.value=it } }
@@ -72,8 +75,22 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
         override fun onLost(network:Network) { viewModelScope.launch { if(foreground && selected.value?.platform!=Platform.BLUETOOTH && selected.value!=null) { holds.stop();stopMotion(); provider?.disconnect(); remote.value=RemoteState(Phase.ERROR,"Network changed. Waiting to reconnect…",messageRes=R.string.status_network_changed_waiting_to_reconnect) } } }
         override fun onAvailable(network:Network) { viewModelScope.launch { delay(800); if(foreground && selected.value!=null && selected.value?.platform!=Platform.BLUETOOTH && remote.value.phase in setOf(Phase.ERROR,Phase.DISCONNECTED))reconnect() } }
     }
+    private fun registerNetwork() {
+        // registerDefaultNetworkCallback is API 24. On API 23 use a Wi-Fi-only
+        // request so cellular changes do not masquerade as TV-network changes.
+        runCatching {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) cm.registerDefaultNetworkCallback(network)
+            else cm.registerNetworkCallback(
+                NetworkRequest.Builder()
+                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                    .build(),
+                network
+            )
+        }
+    }
     init {
-        cm.registerDefaultNetworkCallback(network)
+        registerNetwork()
         viewModelScope.launch { discovery.devices.collect { found -> saved.value.forEach { old -> found.firstOrNull { it.id==old.id && it.host!=old.host }?.let { fresh -> vault.save(fresh); saved.value=vault.saved(); if(selected.value?.id==fresh.id && foreground)connect(fresh) } } } }
         viewModelScope.launch {
             for(request in commands) {
@@ -90,6 +107,7 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
     fun begin() { getApplication<Application>().getSharedPreferences("ui",0).edit().putBoolean("welcomed",true).apply(); welcomed.value=true; page.value=1; discovery.start() }
     fun connect(candidate:TvDevice) {
         val tv=candidate
+        if(tv.platform==Platform.BLUETOOTH && !bluetoothSupported()) { notice.value=strings.getString(R.string.status_bluetooth_hid_is_unavailable_on_this_phone_use_wi_fi_instead); return }
         if(tv.platform !in setOf(Platform.ANDROID_TV,Platform.LG,Platform.SAMSUNG,Platform.BLUETOOTH)) { notice.value=strings.getString(limitation(tv.platform)); return }
         holds.stop();stopMotion(); retry?.cancel(); connection?.cancel(); observation?.cancel(); provider?.disconnect()
         while(commands.tryReceive().isSuccess) { }
@@ -262,7 +280,7 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
             }
         }
     }
-    fun bonded():List<TvDevice> = BluetoothProvider(getApplication()).bonded()
+    fun bonded():List<TvDevice> = if(bluetoothSupported()) BluetoothProvider(getApplication()).bonded() else emptyList()
     fun pause() { foreground=false;setupProvider?.disconnect(); holds.stop();stopMotion(); while(commands.tryReceive().isSuccess) { }; retry?.cancel(); connection?.cancel(); observation?.cancel(); provider?.disconnect(); remote.value=RemoteState(Phase.DISCONNECTED,"Connection paused while OpenTV-Remote is in the background",messageRes=R.string.status_connection_paused_while_opentv_remote_is_in_the_background); discovery.stop() }
     fun resume() { foreground=true;
         setupProvider?.let { setup ->
@@ -271,7 +289,7 @@ class RemoteViewModel(app:Application):AndroidViewModel(app) {
             return
         }
         if(selected.value!=null && remote.value.phase==Phase.DISCONNECTED)reconnect() }
-    override fun onCleared() { endBluetoothSetup(); holds.stop();stopMotion(); cm.unregisterNetworkCallback(network); connection?.cancel(); observation?.cancel(); provider?.disconnect(); discovery.close(); commands.close() }
+    override fun onCleared() { endBluetoothSetup(); holds.stop();stopMotion(); runCatching { cm.unregisterNetworkCallback(network) }; connection?.cancel(); observation?.cancel(); provider?.disconnect(); discovery.close(); commands.close() }
     companion object {
         fun limitation(p:Platform)=when(p) {
             Platform.ROKU -> R.string.status_roku_currently_prohibits_ecp_commands_from_third_party_mobile_pla
